@@ -1,0 +1,39 @@
+
+--[[ Project Structure ]]-- >>
+    >computerSystem (package) - Master Package, containing the application
+        >database (package) - Data package, contains all interaction and information with the Sqlite Database
+            >DatabaseInteraction (class) - Class for all communication with the database, e.g. posting and retrieving data
+            >DatabaseSchema (class) - Class containing the database structure and connections, used by DatabaseInteraction to connect
+        >forms (package)
+            >
+            >
+        >Main (class) - Application entry point, this runs all the sub-classes and hosts it
+
+<< --
+
+--[[ Setting up JavaFx 11 ]]-- >>
+    https://www.youtube.com/watch?v=qn2tbftFjno
+
+    1. Create Project
+    2. Add JavaFX 11 from Global Libraries to Module (e.g. this project)
+    3. Add a module-info.java file to the project and define the following:
+        module ComputerSalesSystem {
+            requires javafx.fxml;
+            requires javafx.controls;
+            opens sample;
+        }
+    4. Completed.
+
+<< --
+
+--[[ Setting up Sqlite JDBC ]]-- >>
+
+    1. Copy the SqliteJDBC.jar file to the local project folder
+    2. It should now appear in the IDE src section
+    3. Go to project structure
+    4. Click libraries
+    5. Add that file above
+    6. Completed.
+
+<< --
+
