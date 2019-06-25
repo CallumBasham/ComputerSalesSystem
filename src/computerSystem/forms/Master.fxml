@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,16 +31,16 @@
                         <Image url="@content/Icon_Account.png" />
                      </image>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" styleClass="sidebarMenuButton" text="Callum Basham" textFill="WHITE">
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" styleClass="sidebarMenuButton" text="Callum Basham" textFill="WHITE">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
                         <Font size="10.0" />
@@ -72,6 +73,9 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
                         </ImageView>
                         <Label text="Home" textFill="WHITE">
                            <HBox.margin>
@@ -92,6 +96,9 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
                         </ImageView>
                         <Label text="About" textFill="WHITE">
                            <HBox.margin>
@@ -112,6 +119,9 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
                         </ImageView>
                         <Label text="Shop" textFill="WHITE">
                            <HBox.margin>

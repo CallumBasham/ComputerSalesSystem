@@ -1,6 +1,7 @@
 /* Style Variables */
 *{
     -fx-userVar-sidebar-text-color: #c6c6c6;
+    -fx-userVar-sidebar-text-color_OnHover: rgb(22, 169, 250);
 }
 
 /* Container Grid */
@@ -34,15 +35,20 @@
     -fx-background-color: red;
 }
 .sidebarMenuButton:hover{
-    -fx-border-color: transparent, #9604ff;
+    /*-fx-border-color: transparent, #9604ff;*/
     -fx-border-style: solid;
-    -fx-border-insets: 1 1 1 1, 0;
-    -fx-background-color: transparent;
-    -fx-background-radius: 0, 0;
+    /*-fx-border-insets: 1 1 1 1, 0;*/
+   /*-fx-background-color: transparent;*/
+    /*-fx-background-radius: 0, 0;*/
     -fx-border-color: rgb(22, 169, 250);
-    -fx-border-width: 0px 3px 0px 0px;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-padding: -1 0 0 0;
 }
-.menuButton:pressed {
+.sidebarMenuButton:hover .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-userVar-sidebar-text-color_OnHover;
+}
+.sidebarMenuButton:pressed {
     sidebarMenuButton: black;
     -fx-text-fill: white;
 }
@@ -53,6 +59,8 @@
 }
 .sidebarMenuItemHBox .label {
     -fx-font-size: 12;
+    -fx-font-family: Arial;
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
 }
 .sidebarMenuItemHBox:hover {
     -fx-border-color: transparent, #9604ff;
@@ -62,7 +70,13 @@
     -fx-background-radius: 0, 0;
     -fx-border-color: rgb(22, 169, 250);
     -fx-border-width: 0px 0px 0px 3px;
+    -fx-padding: 0 0 0 -4;
 }
+.sidebarMenuItemHBox:hover .label{
+    /*-fx-padding: 0 0 0 11;*/
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-userVar-sidebar-text-color_OnHover;
+    }
 .sidebarMenuItemHBox:pressed .label {
     -fx-text-fill:red;
 }
