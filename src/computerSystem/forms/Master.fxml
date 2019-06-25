@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -14,16 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Master">
-   <stylesheets>
-      <URL value="@StandardStyles.css" />
-   </stylesheets>
-
+<AnchorPane fx:id="MasterContainer" prefHeight="600.0" prefWidth="800.0" stylesheets="@StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Master">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" BorderPane.alignment="CENTER" />
-         </center>
          <right>
             <Pane prefHeight="446.0" prefWidth="5.0" styleClass="gridBackground" BorderPane.alignment="CENTER" />
          </right>
@@ -71,7 +63,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                  <HBox fx:id="testbutton2" alignment="CENTER_LEFT" onMouseClicked="#handleClick" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -212,6 +204,9 @@
          <top>
             <Pane prefHeight="5.0" prefWidth="778.0" styleClass="gridBackground" />
          </top>
+         <center>
+            <AnchorPane fx:id="loaderAnchorPane" styleClass="background" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
