@@ -1,14 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="computerSystem.forms.Master"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Master">
+   <stylesheets>
+      <URL value="@StandardStyles.css" />
+   </stylesheets>
 
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="background" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            <Pane prefHeight="446.0" prefWidth="5.0" styleClass="gridBackground" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <HBox prefHeight="5.0" prefWidth="778.0" styleClass="gridBackground" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="590.0" prefWidth="140.0" styleClass="gridBackground" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@content/Icon_Account.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" styleClass="sidebarMenuButton" text="Callum Basham" textFill="WHITE">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </MenuButton>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" prefHeight="30.0" prefWidth="140.0" styleClass="sidebarTitle">
+                     <children>
+                        <Label text="Options" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Account.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Home" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="209.0" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_About.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="About" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="249.0" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Shop.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Shop" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="289.0" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Basket.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Basket" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="30.0" prefWidth="140.0" styleClass="sidebarTitle">
+                     <children>
+                        <Label text="Admin" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="329.0" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Account.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Accounts" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="409.0" prefHeight="40.0" prefWidth="140.0" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Shop.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Inventory" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <Pane prefHeight="5.0" prefWidth="778.0" styleClass="gridBackground" />
+         </top>
+      </BorderPane>
+   </children>
 </AnchorPane>

@@ -1,0 +1,68 @@
+/* Style Variables */
+*{
+    -fx-userVar-sidebar-text-color: #c6c6c6;
+}
+
+/* Container Grid */
+.background{
+    -fx-background-color: #484a4b;
+}
+
+.gridBackground{
+    -fx-background-color: #3d3f40;
+}
+
+.sidebarTitle{
+    -fx-background-color: #4d5051;
+}
+
+/* Sidebar MenuButton of the User */
+.sidebarMenuButton {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-family: Arial;
+    -fx-font-size: 12;
+}
+.sidebarMenuButton > .label {
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-font-family: Arial;
+    -fx-font-size: 12;
+}
+.sidebarMenuButton > .Image {
+    -fx-background-color: red;
+}
+.sidebarMenuButton:hover{
+    -fx-border-color: transparent, #9604ff;
+    -fx-border-style: solid;
+    -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0, 0;
+    -fx-border-color: rgb(22, 169, 250);
+    -fx-border-width: 0px 3px 0px 0px;
+}
+.menuButton:pressed {
+    sidebarMenuButton: black;
+    -fx-text-fill: white;
+}
+
+/* Sidebar Menu Item */
+.sidebarMenuItemHBox {
+
+}
+.sidebarMenuItemHBox .label {
+    -fx-font-size: 12;
+}
+.sidebarMenuItemHBox:hover {
+    -fx-border-color: transparent, #9604ff;
+    -fx-border-style: solid;
+    -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0, 0;
+    -fx-border-color: rgb(22, 169, 250);
+    -fx-border-width: 0px 0px 0px 3px;
+}
+.sidebarMenuItemHBox:pressed .label {
+    -fx-text-fill:red;
+}
