@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -34,11 +33,10 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" styleClass="sidebarMenuButton" text="Callum Basham" textFill="WHITE">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
+                  <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="sidebarMenuButton" text="Login" textFill="WHITE" onMouseClicked="#accountHandleClick">
+                    <!--<items>
+                      <MenuItem mnemonicParsing="false" text="Login" />
+                    </items>-->
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -64,7 +62,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnHome" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick" >
+                  <HBox fx:id="Sidebar_btnHome" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -87,7 +85,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnAbout" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick">
+                  <HBox fx:id="Sidebar_btnAbout" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -110,7 +108,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnShop" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick">
+                  <HBox fx:id="Sidebar_btnShop" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -133,7 +131,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnBasket" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick">
+                  <HBox fx:id="Sidebar_btnBasket" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -168,7 +166,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnAccounts" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick">
+                  <HBox fx:id="Sidebar_btnAccounts" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
@@ -188,7 +186,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="Sidebar_btnStock" styleClass="sidebarMenuItemHBox" onMouseClicked="#handleClick">
+                  <HBox fx:id="Sidebar_btnStock" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>

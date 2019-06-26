@@ -14,6 +14,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.w3c.dom.events.MouseEvent;
 import java.io.IOException;
@@ -27,11 +28,13 @@ public class Master extends Application {
     }
 
     private static Parent root;
+    private static Stage primaryStage;
     @FXML private AnchorPane MasterContainer;
     @FXML private AnchorPane loaderAnchorPane;
 
-    @Override public void start(Stage primaryStage) throws Exception{
+    @Override public void start(Stage _primaryStage) throws Exception{
         //Initialize the JavaFX Application
+        primaryStage = _primaryStage;
         root = FXMLLoader.load(getClass().getResource("Master.fxml"));
         primaryStage.setTitle("3CS Computers");
         primaryStage.setScene(new Scene(root, 1200, 800));
@@ -39,58 +42,59 @@ public class Master extends Application {
         primaryStage.show();
 
         //Load the default "Home" page onto the above
-        loadPage("Temp_Placeholder.fxml");
+        loadPage("Home.fxml"); //TODO - Switch to Home.fxml
     }
 
     //Container Methods
-    private void loadPage(String FXMLFile) throws IOException {
+    private void loadPage(String FXMLFile) {
         AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
-
-        System.out.println(pageContainer.getWidth());
-        System.out.println(pageContainer.getHeight());
-
-        for(Node chl : pageContainer.getChildren()){
-            System.out.println(chl.getId());
-
-        }
-
         pageContainer.getChildren().clear();
-
-        AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
-        //LoadingPane.setPrefWidth(pageContainer.getWidth());
-        //LoadingPane.setPrefHeight(pageContainer.getHeight());
-        AnchorPane.setTopAnchor(LoadingPane, 0.0);
-        AnchorPane.setBottomAnchor(LoadingPane, 0.0);
-        AnchorPane.setLeftAnchor(LoadingPane, 0.0);
-        AnchorPane.setRightAnchor(LoadingPane, 0.0);
-        pageContainer.getChildren().add((LoadingPane));
+        try {
+            AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
+            AnchorPane.setTopAnchor(LoadingPane, 0.0);
+            AnchorPane.setBottomAnchor(LoadingPane, 0.0);
+            AnchorPane.setLeftAnchor(LoadingPane, 0.0);
+            AnchorPane.setRightAnchor(LoadingPane, 0.0);
+            pageContainer.getChildren().add((LoadingPane));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     //Events
     @FXML private void handleClick(Event ev) {
-        System.out.println("clicc");
         HBox box = (HBox)ev.getSource();
-        System.out.print(box.getId());
-        try{
-            if(box.getId().equals("Sidebar_btnHome"))
-            {
+            if(box.getId().equals("Sidebar_btnHome")) {
                 System.out.println("Home Clicked!");
                 loadPage("Home.fxml");
-            }
-            else {
+            } else if(box.getId().equals("Sidebar_btnAbout")) {
+                System.out.println("About Clicked!");
+                loadPage("About.fxml");
+            } else {
                 System.out.println("Unknown Clicked!");
                 loadPage("Temp_Placeholder.fxml");
             }
-        } catch (IOException ex) {
 
-        }
+    }
 
-        /*for (Node ctrl: box.getChildren()) {
-            if(ctrl instanceof Label)
-            {
-                ((Label) ctrl).setText("Clicked");
-            }
-        }*/
+    @FXML private void accountHandleClick(Event ev) {
+        System.out.println("Account clicked");
+        //if not logged in do stuff
+        //else do nothing and display menu options
+
+        Stage dia = new Stage();
+        dia.initModality(Modality.NONE);
+        dia.initOwner(primaryStage);
+        Label lb = new Label();
+        lb.setText("Hello there");
+
+        Scene diaSce = new Scene(lb, 300, 200);
+        dia.setScene(diaSce);
+        dia.show();
+
+        loadPage("Account.fxml");
+        Account acc = new Account();
+        acc.loadLogin(root);
     }
 
 
