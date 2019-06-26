@@ -26,8 +26,9 @@ public class Master extends Application {
         launch();
     }
 
-    private Parent root;
+    private static Parent root;
     @FXML private AnchorPane MasterContainer;
+    @FXML private AnchorPane loaderAnchorPane;
 
     @Override public void start(Stage primaryStage) throws Exception{
         //Initialize the JavaFX Application
@@ -38,14 +39,24 @@ public class Master extends Application {
         primaryStage.show();
 
         //Load the default "Home" page onto the above
-        loadPage("Home.fxml");
+        loadPage("Temp_Placeholder.fxml");
     }
 
     //Container Methods
     private void loadPage(String FXMLFile) throws IOException {
         AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
-        pageContainer.getChildren().removeAll();
-        AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource("Home.fxml"));
+
+        System.out.println(pageContainer.getWidth());
+        System.out.println(pageContainer.getHeight());
+
+        for(Node chl : pageContainer.getChildren()){
+            System.out.println(chl.getId());
+
+        }
+
+        pageContainer.getChildren().clear();
+
+        AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
         //LoadingPane.setPrefWidth(pageContainer.getWidth());
         //LoadingPane.setPrefHeight(pageContainer.getHeight());
         AnchorPane.setTopAnchor(LoadingPane, 0.0);
@@ -59,12 +70,27 @@ public class Master extends Application {
     @FXML private void handleClick(Event ev) {
         System.out.println("clicc");
         HBox box = (HBox)ev.getSource();
-        for (Node ctrl: box.getChildren()) {
+        System.out.print(box.getId());
+        try{
+            if(box.getId().equals("Sidebar_btnHome"))
+            {
+                System.out.println("Home Clicked!");
+                loadPage("Home.fxml");
+            }
+            else {
+                System.out.println("Unknown Clicked!");
+                loadPage("Temp_Placeholder.fxml");
+            }
+        } catch (IOException ex) {
+
+        }
+
+        /*for (Node ctrl: box.getChildren()) {
             if(ctrl instanceof Label)
             {
                 ((Label) ctrl).setText("Clicked");
             }
-        }
+        }*/
     }
 
 

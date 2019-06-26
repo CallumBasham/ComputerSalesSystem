@@ -15,6 +15,9 @@
 
 .sidebarTitle{
     -fx-background-color: #4d5051;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-height: 30;
+    -fx-pref-width: 140;
 }
 
 /* Sidebar MenuButton of the User */
@@ -55,7 +58,9 @@
 
 /* Sidebar Menu Item */
 .sidebarMenuItemHBox {
-
+    -fx-pref-width: 140;
+    -fx-pref-height:40;
+    -fx-alignment: CENTER_LEFT;
 }
 .sidebarMenuItemHBox .label {
     -fx-font-size: 12;
