@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.testapps.GlyphsBrowser?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="PlaceholderAnchorPane" prefHeight="617.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <GlyphsBrowser layoutX="6.0" layoutY="14.0" prefHeight="559.0" prefWidth="960.0" />
+   <HBox prefHeight="37.0" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+          <ProgressIndicator prefHeight="53.0" prefWidth="153.0">
+    </ProgressIndicator>
+         <ProgressIndicator layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="62.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="62.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="114.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="62.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="114.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="166.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="218.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="322.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="374.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="426.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="478.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="530.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="114.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="270.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+         <ProgressIndicator layoutX="426.0" layoutY="10.0" prefHeight="53.0" prefWidth="153.0" />
+      </children>
+   </HBox>
+
+</AnchorPane>
