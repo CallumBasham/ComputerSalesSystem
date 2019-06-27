@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -16,13 +17,48 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
 import java.io.IOException;
-
+import java.net.URL;
 
 
 public class Account {
+
+    computerSystem.forms.Master masterController = new computerSystem.forms.Master();
+
     @FXML private AnchorPane masterAnchorPane;
-    @FXML private ProgressIndicator loginTxtField_Username_Icon;
-    @FXML private ProgressIndicator loginPssField_Pass_Icon;
+
+    //Login Form
+    @FXML private TextField             loginTxtField_Username;
+    @FXML private ProgressIndicator     loginTxtField_Username_Icon;
+    @FXML private PasswordField         loginPssField_Pass;
+    @FXML private ProgressIndicator     loginPssField_Pass_Icon;
+
+    //Create Form
+    @FXML private TextField             createTxtField_Username;
+    @FXML private ProgressIndicator     createTxtField_Username_Icon;
+    @FXML private TextField             createTxtField_Email;
+    @FXML private ProgressIndicator     createTxtField_Email_Icon;
+    @FXML private TextField             createTxtField_Phone;
+    @FXML private ProgressIndicator     createTxtField_Phone_Icon;
+    @FXML private ChoiceBox             createChcBx_Sex;
+    @FXML private ProgressIndicator     createChcBx_Sex_Icon;
+    @FXML private TextField             createTxtField_Forename;
+    @FXML private ProgressIndicator     createTxtField_Forename_Icon;
+    @FXML private TextField             createTxtField_Surname;
+    @FXML private ProgressIndicator     createTxtField_Surname_Icon;
+    @FXML private PasswordField         createPssField_Pass;
+    @FXML private ProgressIndicator     createPssField_Pass_Icon;
+
+    @FXML private void handleButtonClick(Event ev) {
+        Button _handledObect = (Button)ev.getSource();
+        switch(_handledObect.getId()){
+            case "loginBtn_Create":
+                masterController.loadPage("accounts/Create.fxml");
+                break;
+            case "createBtn_Login":
+                masterController.loadPage("accounts/Login.fxml");
+                break;
+        }
+    }
 
     @FXML private void handleTextChanged(Event ev) {
         if(ev.getSource() instanceof TextField){
@@ -60,15 +96,9 @@ public class Account {
         }
     }
 
-
-
-
-
-
-
-
-
-
+    @FXML protected void initialize() {
+        System.out.println("Accounts Initialized");
+    }
 
 
 

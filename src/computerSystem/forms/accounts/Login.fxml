@@ -21,7 +21,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font></Label>
                   <TextField fx:id="loginTxtField_Username" minHeight="25.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" onKeyReleased="#handleTextChanged"  />
-                  <ProgressIndicator fx:id="loginTxtField_Username_Icon" prefWidth="25.0" style="-fx-progress-color: lightblue;" HBox.hgrow="NEVER" />
+                  <ProgressIndicator fx:id="loginTxtField_Username_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="185.0" prefHeight="50.0" prefWidth="600.0" spacing="20.0">
@@ -31,27 +31,15 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="loginPssField_Pass" minHeight="25.0" minWidth="300.0" promptText="Please enter your password here" onKeyReleased="#handleTextChanged"  />
-                  <ProgressIndicator fx:id="loginPssField_Pass_Icon"  prefWidth="25.0" style="-fx-progress-color: lightblue;" HBox.hgrow="NEVER" />
+                  <PasswordField fx:id="loginPssField_Pass" onKeyReleased="#handleTextChanged" promptText="Please enter your password here"  minHeight="25.0" minWidth="300.0"   />
+                  <ProgressIndicator fx:id="loginPssField_Pass_Icon"  prefWidth="25.0" HBox.hgrow="NEVER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="215.0" prefHeight="50.0" prefWidth="600.0" spacing="20.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="23.0" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0" mnemonicParsing="false" style="-fx-background-color: rgba(200,200,200,.5); -fx-border-color: lightblue;" text="Login" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="23.0" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0" mnemonicParsing="false" style="-fx-background-color: rgba(200,200,200,.5); -fx-border-color: lightblue; -fx-border-radius: 10;" text="Forgot Login" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="23.0" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0" mnemonicParsing="false" style="-fx-background-color: rgba(200,200,200,.5); -fx-border-color: lightblue; -fx-border-radius: 10;" text="Create Account" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
+                  <Button fx:id="loginBtn_Login" onMouseClicked="#handleButtonClick" text="Login" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0"   />
+                  <Button fx:id="loginBtn_Forgot" onMouseClicked="#handleButtonClick" text="Forgot Login" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0"   />
+                  <Button fx:id="loginBtn_Create" onMouseClicked="#handleButtonClick" text="Create Account" maxHeight="30.0" maxWidth="150.0" minHeight="25.0" minWidth="125.0"  />
                </children>
             </HBox>
          </children>

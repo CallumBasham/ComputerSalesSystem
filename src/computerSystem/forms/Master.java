@@ -22,22 +22,31 @@ public class Master extends Application {
         launch();
     }
 
+    //These are static as they may need to be accessed by sub-controllers
+    public static Stage stage;
+    public static Scene scene;
     public static Parent root;
-    private static Stage primaryStage;
+
+    //Master FXML Controls
     @FXML private AnchorPane MasterContainer;
     @FXML private AnchorPane loaderAnchorPane;
 
     @Override public void start(Stage _primaryStage) throws Exception{
         //Initialize the JavaFX Application
-        primaryStage = _primaryStage;
+        stage = _primaryStage;
         root = FXMLLoader.load(getClass().getResource("Master.fxml"));
-        primaryStage.setTitle("3CS Computers");
-        primaryStage.setScene(new Scene(root, 1200, 800));
-        primaryStage.setMinHeight(400); primaryStage.setMinWidth(600);
-        primaryStage.show();
+        scene = new Scene(root, 1200, 800);
+        stage.setScene(scene);
+
+        //Set Defaults
+        stage.setTitle("3CS Computers");
+        stage.setMinHeight(400); stage.setMinWidth(600);
+        stage.show();
 
         //Load the default "Home" page onto the above
         loadPage("Home.fxml"); //TODO - Switch to Home.fxml
+
+        System.out.println("--[[ UI Finished Loading! ]]--");
     }
 
     //Container Methods

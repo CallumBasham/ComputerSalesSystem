@@ -4,6 +4,58 @@
     -fx-userVar-sidebar-text-color_OnHover: rgb(22, 169, 250);
 }
 
+
+/* Overriding Default Class/Control Styles */
+*TextField {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10;
+    -fx-background-color: #4b4b4b;
+    -fx-text-fill: white;
+}
+*ChoiceBox {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10;
+    -fx-background-color: #4b4b4b;
+    -fx-text-fill: white;
+}
+*ChoiceBox .label {
+    -fx-text-fill: white;
+}
+*ChoiceBox .menu-item {
+    -fx-border-color: lightblue;
+    -fx-background-color: #4b4b4b;
+}
+*PasswordField {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10;
+    -fx-background-color: #4b4b4b;
+    -fx-text-fill: white;
+}
+*Button {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: rgba(50, 50, 200, .1);
+    -fx-text-fill: white;
+    -fx-text-alignment: CENTER;
+    -fx-content-display: CENTER;
+    -fx-alignment: CENTER;
+    -fx-font-weight: BOLD;
+    -fx-font-size: 14;
+}
+*Button:hover {
+    -fx-border-color: #82cfe6;
+    -fx-background-color: rgba(50, 50, 200, .5);
+}
+
+
+
+
+
+
+
+
+
 /* Container Grid */
 .background{
     -fx-background-color: #484a4b;
