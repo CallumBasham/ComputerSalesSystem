@@ -1,24 +1,19 @@
 package computerSystem.forms;
 
+import computerSystem.forms.accounts.Account;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
+
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class Master extends Application {
 
@@ -27,7 +22,7 @@ public class Master extends Application {
         launch();
     }
 
-    private static Parent root;
+    public static Parent root;
     private static Stage primaryStage;
     @FXML private AnchorPane MasterContainer;
     @FXML private AnchorPane loaderAnchorPane;
@@ -46,8 +41,24 @@ public class Master extends Application {
     }
 
     //Container Methods
-    private void loadPage(String FXMLFile) {
+    @SuppressWarnings("Duplicates")
+    public void loadPage(String FXMLFile) {
         AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
+        pageContainer.getChildren().clear();
+        try {
+            AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
+            AnchorPane.setTopAnchor(LoadingPane, 0.0);
+            AnchorPane.setBottomAnchor(LoadingPane, 0.0);
+            AnchorPane.setLeftAnchor(LoadingPane, 0.0);
+            AnchorPane.setRightAnchor(LoadingPane, 0.0);
+            pageContainer.getChildren().add((LoadingPane));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void loadPage(String FXMLFile, AnchorPane pageContainer) {
         pageContainer.getChildren().clear();
         try {
             AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
@@ -82,7 +93,7 @@ public class Master extends Application {
         //if not logged in do stuff
         //else do nothing and display menu options
 
-        Stage dia = new Stage();
+        /*Stage dia = new Stage();
         dia.initModality(Modality.NONE);
         dia.initOwner(primaryStage);
         Label lb = new Label();
@@ -90,13 +101,10 @@ public class Master extends Application {
 
         Scene diaSce = new Scene(lb, 300, 200);
         dia.setScene(diaSce);
-        dia.show();
+        dia.show();*/
 
-        loadPage("Account.fxml");
-        Account acc = new Account();
-        acc.loadLogin(root);
+        //loadPage("accounts/Account.fxml");
+
+        loadPage("accounts/Login.fxml");
     }
-
-
-
 }

@@ -4,4 +4,5 @@ module ComputerSalesSystem {
     requires java.sql;
 
     opens computerSystem.forms;
+    opens computerSystem.forms.accounts;
 }
