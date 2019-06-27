@@ -1,9 +1,11 @@
 package computerSystem.forms.accounts;
 
 import computerSystem.Main;
+import computerSystem.database.DatabaseInteraction;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -57,11 +59,30 @@ public class Account {
                 ) {
                     System.out.println("All Fields Validated on Format");
                     //CHECK DB FOR DUPLICATES
-                    System.out.println("All Fields Validated on Database");
-                    //POST TO DB
-                    System.out.println("Posted to Database");
-                    masterController.loadPage("Home.fxml");
-                    System.out.println("Loaded Home");
+                    boolean isDupe = DatabaseInteraction.StoredProcedures.Scalar.isUsernameDuplicate(createTxtField_Username.getText());
+                    if(!isDupe) {
+                        System.out.println("All Fields Validated on Database");
+                        boolean isSuccess = DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser(
+                                createTxtField_Username.getText(),
+                                createTxtField_Email.getText(),
+                                createTxtField_Phone.getText(),
+                                createPssField_Pass.getText(),
+                                1
+                        );
+                        if(isSuccess) {
+                            System.out.println("Posted to Database");
+                            masterController.loadPage("Home.fxml");
+                            System.out.println("Loaded Home");
+                        } else {
+                            System.out.println("Failure creating account!");
+                        }
+
+                    }
+                    else {
+                        System.out.println("Is a duplicate!");
+                    }
+
+
                 } else {
                     System.out.println("One or more fields incorrect!");
                 }

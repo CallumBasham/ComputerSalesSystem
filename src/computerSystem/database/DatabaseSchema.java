@@ -25,7 +25,7 @@ public class DatabaseSchema {
         private static String getPath() { return databasePath; }
 
         private static String databaseConnection = getDriver() + getPath();
-        private static String getDBNConnection() { return databaseConnection; }
+        public static String getDBNConnection() { return databaseConnection; }
 
         public static Boolean testConnection() {
             System.out.println(getDBNConnection());
@@ -47,12 +47,11 @@ public class DatabaseSchema {
                     "(" +
                     //Base Information
                     "UserID INTEGER PRIMARY KEY," +
-                    "Email VARCHAR(50) UNIQUE," +
+                    "Username VARCHAR(50) UNIQUE," +
+                    "Email VARCHAR(50)," +
+                    "PhoneNumber VARCHAR(25)," +
                     "Password VARCHAR(30)," +
-                    "AccountType INTEGER," +
-                    //Contact Details
-                    "CanContact BIT," +
-                    "PhoneNumber VARCHAR(25)" +
+                    "AccountType INTEGER" +
                     ");";
             protected static String getSchema() { return tbSchema; }
         }
@@ -162,12 +161,12 @@ public class DatabaseSchema {
             //Create the default admin account if one does not already exist!!
             if(query.executeQuery("SELECT COUNT(*) RowCount FROM tbAccounts WHERE AccountType = 0").getInt("RowCount") < 1) {
                 System.out.println("\t>>> tbAccounts Admin Account does not yet exist, creating now....");
-                query.execute("INSERT INTO tbAccounts (Email, Password, AccountType, CanContact, PhoneNumber)" +
+                query.execute("INSERT INTO tbAccounts (Username, Email, Password, AccountType, PhoneNumber)" +
                         "VALUES(" +
+                        "Admin" +                           //Username
                         "'Admin@ComputerSales.com'," +      //Email
                         "'ComputerSales'," +                //Password
                         "0," +                              //AccountType
-                        "1," +                              //CanContact
                         "'07557676680'" +                   //PhoneNumber
                         ")");
                 System.out.println("\t>>> tbAccounts Admin Account has been created!");
