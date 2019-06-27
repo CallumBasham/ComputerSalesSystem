@@ -13,7 +13,9 @@ public class Main {
         localUser = new computerSystem.models.classLocalUser();
 
         //Perform Database Setup and Testing
-        DatabaseSchema.Connection.testConnection();
+        if(DatabaseSchema.Connection.testConnection()) {
+            DatabaseSchema.setupDatabase();
+        }
 
         //Initiate the UI
         Master.initMaster();

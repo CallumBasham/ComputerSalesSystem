@@ -162,5 +162,5 @@ public class Account {
     @FXML protected void initialize() {
         System.out.println("Accounts Initialized");
     }
-    
+
 }
