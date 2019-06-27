@@ -3,22 +3,9 @@ package computerSystem.forms.accounts;
 import computerSystem.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.Node;
-import java.io.IOException;
-import java.net.URL;
-
 
 public class Account {
 
@@ -57,6 +44,28 @@ public class Account {
             case "createBtn_Login":
                 masterController.loadPage("accounts/Login.fxml");
                 break;
+            case "createBtn_Create":
+                //POST TO DATABASE
+                if(
+                        createTxtField_Username_Icon.getOpacity() == 0 &&
+                        createTxtField_Email_Icon.getOpacity() == 0 &&
+                        createTxtField_Phone_Icon.getOpacity() == 0 &&
+                        createChcBx_Sex_Icon.getOpacity() == 0 &&
+                        createTxtField_Forename_Icon.getOpacity() == 0 &&
+                        createTxtField_Surname_Icon.getOpacity() == 0 &&
+                        createPssField_Pass_Icon.getOpacity() == 0
+                ) {
+                    System.out.println("All Fields Validated on Format");
+                    //CHECK DB FOR DUPLICATES
+                    System.out.println("All Fields Validated on Database");
+                    //POST TO DB
+                    System.out.println("Posted to Database");
+                    masterController.loadPage("Home.fxml");
+                    System.out.println("Loaded Home");
+                } else {
+                    System.out.println("One or more fields incorrect!");
+                }
+                break;
         }
     }
 
@@ -64,6 +73,7 @@ public class Account {
         if(ev.getSource() instanceof TextField){
             TextField _handledObject = (TextField)ev.getSource();
             switch (_handledObject.getId()){
+                //Login Form
                 case "loginTxtField_Username":
                     String verifiedUsername = Main.localUser.userAccount.verifyUsernameFormat(_handledObject.getText());
                     if(verifiedUsername.length() > 0) {
@@ -80,8 +90,61 @@ public class Account {
                         setVerificationProgress(loginPssField_Pass_Icon, false, verifiedPassword);
                     }
                     break;
+                //Create Form
+                case "createTxtField_Username":
+                    String verifiedUsername2 = Main.localUser.userAccount.verifyUsernameFormat(_handledObject.getText());
+                    if(verifiedUsername2.length() > 0) {
+                        setVerificationProgress(createTxtField_Username_Icon, true, verifiedUsername2);
+                    } else {
+                        setVerificationProgress(createTxtField_Username_Icon, false, verifiedUsername2);
+                    }
+                    break;
+                case "createTxtField_Email":
+                    String verifiedEmail = Main.localUser.userAccount.verifyEmailFormat(_handledObject.getText());
+                    if(verifiedEmail.length() > 0) {
+                        setVerificationProgress(createTxtField_Email_Icon, true, verifiedEmail);
+                    } else {
+                        setVerificationProgress(createTxtField_Email_Icon, false, verifiedEmail);
+                    }
+                    break;
+                case "createTxtField_Phone":
+                    String verifiedPhone = Main.localUser.userAccount.verifyPhoneFormat(_handledObject.getText());
+                    if(verifiedPhone.length() > 0) {
+                        setVerificationProgress(createTxtField_Phone_Icon, true, verifiedPhone);
+                    } else {
+                        setVerificationProgress(createTxtField_Phone_Icon, false, verifiedPhone);
+                    }
+                    break;
+                case "createTxtField_Forename":
+                    String verifiedForename = Main.localUser.userClient.verifyForenameFormat(_handledObject.getText());
+                    if(verifiedForename.length() > 0) {
+                        setVerificationProgress(createTxtField_Forename_Icon, true, verifiedForename);
+                    } else {
+                        setVerificationProgress(createTxtField_Forename_Icon, false, verifiedForename);
+                    }
+                    break;
+                case "createTxtField_Surname":
+                    String verifiedSurname = Main.localUser.userClient.verifySurnameFormat(_handledObject.getText());
+                    if(verifiedSurname.length() > 0) {
+                        setVerificationProgress(createTxtField_Surname_Icon, true, verifiedSurname);
+                    } else {
+                        setVerificationProgress(createTxtField_Surname_Icon, false, verifiedSurname);
+                    }
+                    break;
+                case "createPssField_Pass":
+                    String verifiedPassword2 = Main.localUser.userAccount.verifyPasswordFormat(_handledObject.getText());
+                    if(verifiedPassword2.length() > 0) {
+                        setVerificationProgress(createPssField_Pass_Icon, true, verifiedPassword2);
+                    } else {
+                        setVerificationProgress(createPssField_Pass_Icon, false, verifiedPassword2);
+                    }
+                    break;
             }
         }
+    }
+
+    @FXML private void handleOnAction(ActionEvent ev) {
+        setVerificationProgress(createChcBx_Sex_Icon, false, "");
     }
 
     private void setVerificationProgress(ProgressIndicator _control, Boolean _hasErrors, String _errMsg) {
@@ -99,117 +162,5 @@ public class Account {
     @FXML protected void initialize() {
         System.out.println("Accounts Initialized");
     }
-
-
-
-    /*public void loadSubPage(String _page)
-    {
-        AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
-        pageContainer.getChildren().clear();
-        try {
-            AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
-            AnchorPane.setTopAnchor(LoadingPane, 0.0);
-            AnchorPane.setBottomAnchor(LoadingPane, 0.0);
-            AnchorPane.setLeftAnchor(LoadingPane, 0.0);
-            AnchorPane.setRightAnchor(LoadingPane, 0.0);
-            pageContainer.getChildren().add((LoadingPane));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-
-    }
-
-    public void loadLogin() {
-        root = _root;
-        AnchorPane _masterAnchorPane = (AnchorPane) root.lookup("#masterAnchorPane");*/
-
-        /*VBox vBox = new VBox();
-        AnchorPane.setTopAnchor(vBox, 50.0);
-        AnchorPane.setBottomAnchor(vBox, 50.0);
-        AnchorPane.setLeftAnchor(vBox, 100.0);
-        AnchorPane.setRightAnchor(vBox, 100.0);
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(15);
-
-        Label lblUsernameTitle = new Label("Username or Email");
-        lblUsernameTitle.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
-        vBox.getChildren().add((lblUsernameTitle));
-
-        TextField txtfldUsernameValue = new TextField();
-        txtfldUsernameValue.setMaxHeight(20);
-        txtfldUsernameValue.setMaxWidth (400);
-        vBox.getChildren().add((txtfldUsernameValue));
-
-        Label lblPasswordTitle = new Label("Password");
-        lblPasswordTitle.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
-        vBox.getChildren().add((lblPasswordTitle));
-
-        PasswordField passfldPasswordValue = new PasswordField();
-        passfldPasswordValue.setMaxHeight(20);
-        passfldPasswordValue.setMaxWidth(400);
-        vBox.getChildren().add((passfldPasswordValue));
-
-        Pane pneFiller = new Pane();
-        pneFiller.setMinHeight(20);
-        vBox.getChildren().add(pneFiller);
-
-        HBox hboxOptions = new HBox(10);
-        hboxOptions.setMaxWidth(600);
-        hboxOptions.setAlignment(Pos.CENTER);
-
-        Button btnLogin = new Button("Login");
-        btnLogin.setId("btnLogin_" + "loadLogin");
-        btnLogin.setMinWidth(100); btnLogin.setMaxWidth(100);
-        hboxOptions.getChildren().add((btnLogin));
-
-        Button btnForgot = new Button("Forgot Login");
-        btnLogin.setId("btnForgot" + "loadLogin");
-        btnForgot.setMinWidth(100); btnForgot.setMaxWidth(100);
-        hboxOptions.getChildren().add((btnForgot));
-
-        Button btnCreate = new Button("Create Account");
-        btnLogin.setId("btnCreate" + "loadLogin");
-        btnCreate.setMinWidth(100); btnForgot.setMaxWidth(100);
-        btnCreate.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                AnchorPane _masterAnchorPane = (AnchorPane) root.lookup("#masterAnchorPane");
-                _masterAnchorPane.getChildren().clear();
-                loadCreate(root);
-
-            }
-        });
-        hboxOptions.getChildren().add((btnCreate));
-
-        vBox.getChildren().add((hboxOptions));
-        _masterAnchorPane.getChildren().add(vBox);
-    }
-
-    public void loadCreate() {
-        AnchorPane _masterAnchorPane = (AnchorPane) computerSystem.forms.Master.root.lookup("#masterAnchorPane");
-
-        VBox vBox = new VBox();
-        AnchorPane.setTopAnchor(vBox, 50.0);
-        AnchorPane.setBottomAnchor(vBox, 50.0);
-        AnchorPane.setLeftAnchor(vBox, 100.0);
-        AnchorPane.setRightAnchor(vBox, 100.0);
-        vBox.setAlignment(Pos.CENTER);
-        vBox.setSpacing(15);
-
-        Label lblUsernameTitle = new Label("Username");
-        lblUsernameTitle.setStyle("-fx-text-fill: white; -fx-font-size: 16;");
-        vBox.getChildren().add((lblUsernameTitle));
-
-        TextField txtfldUsernameValue = new TextField();
-        txtfldUsernameValue.setMaxHeight(20);
-        txtfldUsernameValue.setMaxWidth (400);
-        vBox.getChildren().add((txtfldUsernameValue));
-
-        _masterAnchorPane.getChildren().add(vBox);
-    }
-
-    public void loadLoggedIn() {
-
-    }*/
+    
 }

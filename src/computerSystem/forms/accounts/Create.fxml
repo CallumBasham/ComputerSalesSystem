@@ -56,7 +56,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="createChcBx_Sex" minHeight="25.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0" >
+                  <ChoiceBox fx:id="createChcBx_Sex" minHeight="25.0" minWidth="300.0" prefHeight="25.0" prefWidth="300.0" onAction="#handleOnAction" >
                       <items>
                           <FXCollections fx:factory="observableArrayList">
                               <String fx:value="Male" />
