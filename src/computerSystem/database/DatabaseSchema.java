@@ -42,16 +42,30 @@ public class DatabaseSchema {
     }
 
     protected static class Schema {
+
         static class tbAccounts {
             static String tbSchema = "CREATE TABLE IF NOT EXISTS tbAccounts" +
                     "(" +
-                    //Base Information
                     "UserID INTEGER PRIMARY KEY," +
                     "Username VARCHAR(50) UNIQUE," +
+                    "Password VARCHAR(30)," +
+                    "AccountType BIT," +
                     "Email VARCHAR(50)," +
                     "PhoneNumber VARCHAR(25)," +
-                    "Password VARCHAR(30)," +
-                    "AccountType INTEGER" +
+                    "Picture VARCHAR(200)," +
+                    "CanContact BIT" +
+                    ");";
+            protected static String getSchema() { return tbSchema; }
+        }
+
+        static class tbClients{
+            static String tbSchema = "CREATE TABLE IF NOT EXISTS tbClients" +
+                    "(" +
+                    //Foreign Key
+                    "UserID INTEGER REFERENCES tbAccounts(UserID)," +
+                    "Title VARCHAR(20)," +
+                    "Forename VARCHAR(50)," +
+                    "Surname VARCHAR(50)" +
                     ");";
             protected static String getSchema() { return tbSchema; }
         }
@@ -63,8 +77,8 @@ public class DatabaseSchema {
                     "UserID INTEGER REFERENCES tbAccounts(UserID)," +
                     "CountryID INTEGER REFERENCES lkCountry(CountryID)," +
                     // Personal Address
-                    "TownCityRegion STRING," +
                     "Postcode VARCHAR(12)," +
+                    "TownCityRegion STRING," +
                     "HouseName VARCHAR(50)," +
                     "BillingAddress BIT" +
                     ");";
@@ -139,6 +153,10 @@ public class DatabaseSchema {
             query.execute(Schema.tbAccounts.getSchema());
             System.out.println("\t>>> tbAccounts has been created!");
 
+            //Create Client Table if not Exists
+            query.execute(Schema.tbClients.getSchema());
+            System.out.println("\t>>> tbClients has been created!");
+
             //Create Address Table if not Exists
             query.execute(Schema.tbAddress.getSchema());
             System.out.println("\t>>> tbAddress has been created!");
@@ -156,25 +174,19 @@ public class DatabaseSchema {
 
     private static boolean initializeDefaultRecords() {
         System.out.println("-[ Creating Default Dataset ]--");
-        try(java.sql.Connection conn = DriverManager.getConnection(Connection.getDBNConnection()); Statement query = conn.createStatement()) {
-
+        try(Statement query = DatabaseInteraction.getQuery()) {
             //Create the default admin account if one does not already exist!!
-            if(query.executeQuery("SELECT COUNT(*) RowCount FROM tbAccounts WHERE AccountType = 0").getInt("RowCount") < 1) {
+            if (query.executeQuery("SELECT COUNT(*) RowCount FROM tbAccounts WHERE AccountType = 0").getInt("RowCount") < 1) {
                 System.out.println("\t>>> tbAccounts Admin Account does not yet exist, creating now....");
-                /*query.execute("INSERT INTO tbAccounts (Username, Email, Password, AccountType, PhoneNumber)" +
-                        "VALUES(" +
-                        "Admin" +                           //Username
-                        "'Admin@ComputerSales.com'," +      //Email
-                        "'ComputerSales'," +                //Password
-                        "0," +                              //AccountType
-                        "'07557676680'" +                   //PhoneNumber
-                        ")");
-                */
-
-                DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser("Admin", "Admin@ComputerSales.com", "07557676680", "Password", 0);
+                query.close();
+                DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser("Admin", "Password", true, "Admin@ComputerSales.com", "07557676680", true, "Mr", "Admin", "ComputerSales");
                 System.out.println("\t>>> tbAccounts Admin Account has been created!");
             }
+        }catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
+        try(Statement query = DatabaseInteraction.getQuery()) {
             //Populate the lkCountries lookup table
             if(query.executeQuery("SELECT COUNT(*) RowCount FROM lkCountry").getInt("RowCount") < 236) {
                 System.out.println("\t>>> lkCountries requires the list of countries imported, creating now....");

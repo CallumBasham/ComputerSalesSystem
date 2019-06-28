@@ -1,9 +1,8 @@
 package computerSystem.database;
 
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import computerSystem.Main;
+
+import java.sql.*;
 
 public class DatabaseInteraction {
 
@@ -41,20 +40,67 @@ public class DatabaseInteraction {
 
         public static class Tabular {
 
+            public static void getUserDetails() {
+                try(Statement query = getQuery()) {
+                    ResultSet userAccountandClientResults = query.executeQuery(
+                            "SELECT " +
+                                    "AC.Username " +
+                                    ",AC.Email " +
+                                    ",CL.Forename " +
+                            "FROM tbAccounts as AC, tbClients as CL " +
+                            "WHERE AC.UserID = CL.UserID " +
+                            "AND AC.Username = '" + Main.localUser.userAccount.getUsername() + "'; "
+                    );
+
+                    userAccountandClientResults.next();
+                    System.out.println(userAccountandClientResults.getString("Username"));
+                    System.out.println(userAccountandClientResults.getString("Email"));
+                    System.out.println(userAccountandClientResults.getString("PhoneNumber"));
+                    System.out.println(userAccountandClientResults.getString("Password"));
+                    System.out.println(userAccountandClientResults.getBoolean("AccountType"));
+                    System.out.println(userAccountandClientResults.getString("Title"));
+                    System.out.println(userAccountandClientResults.getString("Forename"));
+                    System.out.println(userAccountandClientResults.getString("Surname"));
+
+                    Main.localUser.userAccount.setEmail(userAccountandClientResults.getString("Email"));
+                    Main.localUser.userAccount.setPhone(userAccountandClientResults.getString("PhoneNumber"));
+                    Main.localUser.userAccount.setAccountType(userAccountandClientResults.getBoolean("AccountType"));
+                }catch(SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
         }
 
         public static class NonQuery {
 
-            public static boolean isPostNewUser(String _Username, String _Email, String _PhoneNumber, String _Password, int _AccountType) {
+            public static boolean isPostNewUser(String _Username, String _Password, boolean _AccountType, String _Email, String _PhoneNumber, boolean _CanContact, String _Title, String _Forename, String _Surname) {
                 try(Statement query = getQuery()) {
-                    query.execute("INSERT INTO tbAccounts (Username, Email, PhoneNumber, Password, AccountType)" +
+                    //Create primary key entry in tbAccounts
+                    query.execute("INSERT INTO tbAccounts (Username, Password, AccountType, Email, PhoneNumber, CanContact)" +
                             "VALUES(" +
                             "'" + _Username + "'," +            //Username
-                            "'" + _Email + "'," +               //Email
-                            "'" + _PhoneNumber + "'," +         //Phone
-                            "'" + _Password + "'," +            //Password
-                            "" + _AccountType + "" +           //AccountType
+                            "'" + _Password + "'," +               //Password
+                            "" + _AccountType + "," +         //Account Type
+                            "'" + _Email + "'," +            //Email
+                            "'" + _PhoneNumber + "'," +         //Phone Number
+                            "'" + _CanContact + "'" +           //Can Contact
                             ")");
+
+                    int userID = query.executeQuery("SELECT UserID FROM tbAccounts WHERE Username = '" + _Username + "'").getInt("UserID");
+
+                    System.out.println("user Account created and returned the ID: " + userID);
+
+                    //Create foregin key entry in tbClients
+                    query.execute("INSERT INTO tbClients (UserID, Title, Forename, Surname)" +
+                            "VALUES(" +
+                            "'" + userID + "'," +            //Foregin User ID
+                            "'" + _Title + "'," +               //Title
+                            "'" + _Forename + "'," +            //Forename
+                            "'" + _Surname + "'" +         //Surname
+                            ")");
+
+                    System.out.println("user Client information created using the ID: " + userID);
+
                 }catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                     return false;

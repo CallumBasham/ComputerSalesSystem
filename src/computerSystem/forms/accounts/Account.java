@@ -49,6 +49,7 @@ public class Account {
                         System.out.println("Authenticated!");
                         Main.localUser.userAccount.setUsername(loginTxtField_Username.getText());
                         Main.localUser.userAccount.setAuthenticated(true);
+                        Main.localUser.populateDetails();
                         masterController.loadPage("Home.fxml");
                     } else {
                         System.out.println("Credentials incorrect!");
@@ -56,6 +57,9 @@ public class Account {
                 } else {
                     System.out.println("Fields have not been validated!");
                 }
+                break;
+            case "loginBtn_Forgot":
+                masterController.loadPage("accounts/Forgot.fxml");
                 break;
             case "createBtn_Login":
                 masterController.loadPage("accounts/Login.fxml");
@@ -69,11 +73,15 @@ public class Account {
                     if(!isDupe) {
                         System.out.println("All Fields Validated on Database");
                         boolean isSuccess = DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser(
-                                createTxtField_Username.getText(),
-                                createTxtField_Email.getText(),
-                                createTxtField_Phone.getText(),
-                                createPssField_Pass.getText(),
-                                1
+                               createTxtField_Username.getText(),
+                               createPssField_Pass.getText(),
+                               false,
+                               createTxtField_Email.getText(),
+                               createTxtField_Phone.getText(),
+                               false,
+                                (String)createChcBx_Sex.getValue(),
+                                createTxtField_Forename.getText(),
+                                createTxtField_Surname.getText()
                         );
                         if(isSuccess) {
                             System.out.println("Posted to Database");

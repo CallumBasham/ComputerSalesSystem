@@ -1,5 +1,6 @@
 package computerSystem.models;
 
+import computerSystem.database.DatabaseInteraction;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -14,17 +15,25 @@ public class classLocalUser {
     public Cards[] userCards = new Cards[] {};
 
    public classLocalUser() {
+       System.out.println("Local User Initilized");
+   }
+
+   public void populateDetails(){
+       if(userAccount.getAuthenticated()){
+           DatabaseInteraction.StoredProcedures.Tabular.getUserDetails();
+       }
    }
 
     public class Account {
+        private int UserID = 0;
         private String Username = "";
         //Password is only used at runtime in communication with the Database, once authenticated it will not need to be accessed except for changing password
+        private Boolean AccountType = false; //true = admin | false = user
         private String Email = "";
         private String PhoneNumber = "";
         private String Picture = "";
-        private Boolean IsAdmin = false;
         private Boolean CanContact = false;
-        private Boolean Autnenticated = false;
+        private Boolean Autnenticated = false; //Used as the secure replacement for password
 
         public void setUsername(String _Username) {
             this.Username = _Username;
@@ -45,6 +54,18 @@ public class classLocalUser {
             }
 
             return errorMsg;
+        }
+
+        public void setEmail(String _Email) {
+            this.Email = _Email;
+        }
+
+        public void setPhone(String _PhoneNumber) {
+            this.PhoneNumber = _PhoneNumber;
+        }
+
+        public void setAccountType(boolean _Type) {
+            this.AccountType = _Type;
         }
 
         public void setAuthenticated(boolean _Authenticated) {
@@ -140,7 +161,6 @@ public class classLocalUser {
 
             return errorMsg;
         }
-
     }
 
     public class Address {
