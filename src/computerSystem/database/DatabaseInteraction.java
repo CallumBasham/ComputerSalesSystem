@@ -27,6 +27,16 @@ public class DatabaseInteraction {
                 return false;
             }
 
+            public static boolean isLoginCredentialsCorrect(String _Username, String _Password) {
+                try(Statement query = getQuery()) {
+                    int DupeCount = query.executeQuery("SELECT COUNT(*) Counted FROM tbAccounts WHERE Username = '" + _Username +"' AND Password = '" + _Password + "'").getInt("Counted");
+                    if(DupeCount > 0) { return true; }
+                }catch(SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                return false;
+            }
+
         }
 
         public static class Tabular {

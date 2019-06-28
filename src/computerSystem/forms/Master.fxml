@@ -33,7 +33,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="sidebarMenuButton" text="Login" textFill="WHITE" onMouseClicked="#accountHandleClick">
+                  <MenuButton fx:id="userAccountButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="sidebarMenuButton" text="Login" textFill="WHITE" onMouseClicked="#accountHandleClick">
                     <!--<items>
                       <MenuItem mnemonicParsing="false" text="Login" />
                     </items>-->

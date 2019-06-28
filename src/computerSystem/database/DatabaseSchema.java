@@ -161,7 +161,7 @@ public class DatabaseSchema {
             //Create the default admin account if one does not already exist!!
             if(query.executeQuery("SELECT COUNT(*) RowCount FROM tbAccounts WHERE AccountType = 0").getInt("RowCount") < 1) {
                 System.out.println("\t>>> tbAccounts Admin Account does not yet exist, creating now....");
-                query.execute("INSERT INTO tbAccounts (Username, Email, Password, AccountType, PhoneNumber)" +
+                /*query.execute("INSERT INTO tbAccounts (Username, Email, Password, AccountType, PhoneNumber)" +
                         "VALUES(" +
                         "Admin" +                           //Username
                         "'Admin@ComputerSales.com'," +      //Email
@@ -169,6 +169,9 @@ public class DatabaseSchema {
                         "0," +                              //AccountType
                         "'07557676680'" +                   //PhoneNumber
                         ")");
+                */
+
+                DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser("Admin", "Admin@ComputerSales.com", "07557676680", "Password", 0);
                 System.out.println("\t>>> tbAccounts Admin Account has been created!");
             }
 

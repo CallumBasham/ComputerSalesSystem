@@ -26,6 +26,10 @@ public class classLocalUser {
         private Boolean CanContact = false;
         private Boolean Autnenticated = false;
 
+        public void setUsername(String _Username) {
+            this.Username = _Username;
+        }
+        public String getUsername() { return this.Username; }
         public String verifyUsernameFormat(String _Username){
             String errorMsg = "";
             Pattern alphanumericRegex = Pattern.compile("^[a-zA-Z0-9]+$");
@@ -42,6 +46,11 @@ public class classLocalUser {
 
             return errorMsg;
         }
+
+        public void setAuthenticated(boolean _Authenticated) {
+            this.Autnenticated = _Authenticated;
+        }
+        public boolean getAuthenticated() { return this.Autnenticated; }
 
         public String verifyEmailFormat(String _Email){
             String errorMsg = "";

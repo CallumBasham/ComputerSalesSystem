@@ -43,20 +43,26 @@ public class Account {
             case "loginBtn_Create":
                 masterController.loadPage("accounts/Create.fxml");
                 break;
+            case "loginBtn_Login":
+                if(passedLoginValidation()) {
+                    if(DatabaseInteraction.StoredProcedures.Scalar.isLoginCredentialsCorrect(loginTxtField_Username.getText(), loginPssField_Pass.getText())) {
+                        System.out.println("Authenticated!");
+                        Main.localUser.userAccount.setUsername(loginTxtField_Username.getText());
+                        Main.localUser.userAccount.setAuthenticated(true);
+                        masterController.loadPage("Home.fxml");
+                    } else {
+                        System.out.println("Credentials incorrect!");
+                    }
+                } else {
+                    System.out.println("Fields have not been validated!");
+                }
+                break;
             case "createBtn_Login":
                 masterController.loadPage("accounts/Login.fxml");
                 break;
             case "createBtn_Create":
                 //POST TO DATABASE
-                if(
-                        createTxtField_Username_Icon.getOpacity() == 0 &&
-                        createTxtField_Email_Icon.getOpacity() == 0 &&
-                        createTxtField_Phone_Icon.getOpacity() == 0 &&
-                        createChcBx_Sex_Icon.getOpacity() == 0 &&
-                        createTxtField_Forename_Icon.getOpacity() == 0 &&
-                        createTxtField_Surname_Icon.getOpacity() == 0 &&
-                        createPssField_Pass_Icon.getOpacity() == 0
-                ) {
+                if(passedCreateValidation()) {
                     System.out.println("All Fields Validated on Format");
                     //CHECK DB FOR DUPLICATES
                     boolean isDupe = DatabaseInteraction.StoredProcedures.Scalar.isUsernameDuplicate(createTxtField_Username.getText());
@@ -88,6 +94,22 @@ public class Account {
                 }
                 break;
         }
+    }
+
+    private boolean passedLoginValidation(){
+        if(loginTxtField_Username_Icon.getOpacity() == 0 && loginPssField_Pass_Icon.getOpacity() == 0) { return true; } else { return false; }
+    }
+
+    private boolean passedCreateValidation(){
+        if(
+                createTxtField_Username_Icon.getOpacity() == 0 &&
+                        createTxtField_Email_Icon.getOpacity() == 0 &&
+                        createTxtField_Phone_Icon.getOpacity() == 0 &&
+                        createChcBx_Sex_Icon.getOpacity() == 0 &&
+                        createTxtField_Forename_Icon.getOpacity() == 0 &&
+                        createTxtField_Surname_Icon.getOpacity() == 0 &&
+                        createPssField_Pass_Icon.getOpacity() == 0
+        ) { return true; } else { return false; }
     }
 
     @FXML private void handleTextChanged(Event ev) {
