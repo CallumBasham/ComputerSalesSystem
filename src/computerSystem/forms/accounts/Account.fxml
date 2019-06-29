@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:id="masterAnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.accounts.Account">
-
+   <children>
+      <Pane layoutX="198.0" layoutY="111.0" prefHeight="415.0" prefWidth="567.0" style="-fx-background-color:red;" />
+   </children>
 </AnchorPane>

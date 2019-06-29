@@ -43,10 +43,7 @@ public class DatabaseInteraction {
             public static void getUserDetails() {
                 try(Statement query = getQuery()) {
                     ResultSet userAccountandClientResults = query.executeQuery(
-                            "SELECT " +
-                                    "AC.Username " +
-                                    ",AC.Email " +
-                                    ",CL.Forename " +
+                            "SELECT * " +
                             "FROM tbAccounts as AC, tbClients as CL " +
                             "WHERE AC.UserID = CL.UserID " +
                             "AND AC.Username = '" + Main.localUser.userAccount.getUsername() + "'; "
