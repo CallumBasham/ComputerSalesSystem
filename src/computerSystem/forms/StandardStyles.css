@@ -9,12 +9,14 @@
 *TextField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-background-color: #4b4b4b;
     -fx-text-fill: white;
 }
 *ChoiceBox {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-background-color: #4b4b4b;
     -fx-text-fill: white;
 }
@@ -28,6 +30,7 @@
 *PasswordField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-background-color: #4b4b4b;
     -fx-text-fill: white;
 }
@@ -50,10 +53,47 @@
 
 
 
+.titlePane {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+.titlePane > .title{
+    -fx-background-color: #3d3f40;
+}
 
+.titlePaneAnchor {
+    -fx-background-color: #484a4b;
+}
 
+.titleScollPane {
+    -fx-background-color: transparent;
+}
+.titleScollPane > .viewport {
+    -fx-background-color: transparent;
+}
 
+.vboxAddressContainer {
+    -fx-border-color: lightblue;
+    -fx-spacing: 5;
+    -fx-background-color: #4f5152;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
 
+.stanrdardHBox {
+    -fx-spacing: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-alignment: CENTER_LEFT;
+}
+.standardLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-spacing: 10;
+}
 
 
 /* Container Grid */

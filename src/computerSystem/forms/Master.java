@@ -3,16 +3,21 @@ package computerSystem.forms;
 import computerSystem.Main;
 import computerSystem.forms.accounts.Account;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -89,32 +94,53 @@ public class Master extends Application {
     }
 
     @FXML private void accountHandleClick(Event ev) {
-        System.out.println("Account clicked");
-        //if not logged in do stuff
-        //else do nothing and display menu options
-
-        /*Stage dia = new Stage();
-        dia.initModality(Modality.NONE);
-        dia.initOwner(primaryStage);
-        Label lb = new Label();
-        lb.setText("Hello there");
-
-        Scene diaSce = new Scene(lb, 300, 200);
-        dia.setScene(diaSce);
-        dia.show();*/
-
-        //loadPage("accounts/Account.fxml");
-        if(Main.localUser.userAccount.getAuthenticated()){
-            loadPage("accounts/Account.fxml");
-        }else {
+        if(!Main.localUser.userAccount.getAuthenticated()){
             loadPage("accounts/Login.fxml");
         }
     }
 
     private void displayMasterDetails(){
+        MenuButton userBtn = (MenuButton) root.lookup("#userAccountButton");
         if(Main.localUser.userAccount.getAuthenticated()) {
-            MenuButton userBtn = (MenuButton) root.lookup("#userAccountButton");
             userBtn.setText(Main.localUser.userAccount.getUsername());
+            if(userBtn.getItems().toArray().length == 0) {
+
+                MenuItem menuitemEditAccount = new MenuItem("Edit Account");
+                menuitemEditAccount.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        loadPage("accounts/Account.fxml");
+                    }
+                });
+                userBtn.getItems().add(menuitemEditAccount);
+
+                MenuItem menuitemSignOut = new MenuItem("Sign Out");
+                menuitemSignOut.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        Main.localUser.signOut();
+                        userBtn.getItems().clear();
+                        loadPage("Home.fxml");
+                    }
+                });
+                userBtn.getItems().add(menuitemSignOut);
+
+            }
+        } else {
+            userBtn.setText("Login");
         }
     }
+
+    public FXMLLoader getCustomControl(String FXMLFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("customControls/AddressItem.fxml"));
+            //Node returnNode = FXMLLoader.load(getClass().getResource("customControls/AddressItem.fxml"));
+            //return new Object[] {returnNode, };
+            return loader;
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
 }

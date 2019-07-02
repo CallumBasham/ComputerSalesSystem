@@ -1,13 +1,28 @@
 package computerSystem.forms.accounts;
 
+import computerSystem.forms.Master;
+import computerSystem.forms.customControls.*;
 import computerSystem.Main;
 import computerSystem.database.DatabaseInteraction;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 
 public class Account {
 
@@ -36,6 +51,11 @@ public class Account {
     @FXML private ProgressIndicator     createTxtField_Surname_Icon;
     @FXML private PasswordField         createPssField_Pass;
     @FXML private ProgressIndicator     createPssField_Pass_Icon;
+
+    //Account Form
+    @FXML private VBox                  accountAddressContainer;
+    @FXML private VBox                  accountCardsContainer;
+    @FXML private VBox                  accountOrdersContainer;
 
     @FXML private void handleButtonClick(Event ev) {
         Button _handledObect = (Button)ev.getSource();
@@ -209,6 +229,187 @@ public class Account {
             _control.setOpacity(0);
         }
     }
+
+
+    @FXML private void handleTitlePaneClick(Event ev) {
+        TitledPane sentPane = (TitledPane)ev.getSource();
+        try {
+            switch(sentPane.getText()) {
+                case "Address":
+                    if(sentPane.isExpanded() == true) {
+                        if(accountAddressContainer.getChildren().toArray().length == 0) {
+
+                            //Add an entry for each address
+                            for (computerSystem.models.classes.Address addr : Main.localUser.userAddresses) {
+                                addNewAddressItem(addr);
+                            }
+                            addNewAddressOptions();
+                        }
+                    } else {
+                        accountAddressContainer.getChildren().clear();
+                    }
+                    break;
+                case "Cards":
+                    if(sentPane.isExpanded() == true) {
+                        if(accountCardsContainer.getChildren().toArray().length == 0) {
+                            accountCardsContainer.getChildren().add(accountCardsContainer.getChildren().toArray().length, new Label("Lol memes2"));
+                        }
+                    } else {
+                        accountCardsContainer.getChildren().clear();
+                    }
+                    break;
+                case "Orders":
+                    if(sentPane.isExpanded() == true) {
+                        if(accountOrdersContainer.getChildren().toArray().length == 0) {
+                            accountOrdersContainer.getChildren().add(new Label("Lol memes3"));
+                        }
+                    } else {
+                        accountOrdersContainer.getChildren().clear();
+                    }
+                    break;
+            }
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    private void addNewAddressItem (computerSystem.models.classes.Address addr) throws  Exception {
+        FXMLLoader instantiateAddressItem = masterController.getCustomControl("customControls/AddressItem.fxml");
+        VBox loadAddressItem = instantiateAddressItem.load();
+       //loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + addr.getPostcode()); --TODO AMEND THIS
+        loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + "SO321HA");
+        AddressItem controlAddressItem = instantiateAddressItem.getController();
+        controlAddressItem.implimentDefaultData(addr);
+        accountAddressContainer.getChildren().add(loadAddressItem);
+        System.out.println(loadAddressItem.getId());
+    }
+
+    private void addNewAddressOptions () {
+        VBox returnBox = new VBox(); returnBox.getStyleClass().add("vboxAddressContainer"); returnBox.setVgrow(accountAddressContainer, Priority.ALWAYS);
+        HBox hboxOptions = new HBox(); hboxOptions.getStyleClass().add("stanrdardHBox"); hboxOptions.setStyle("-fx-alignment: CENTER;");
+        Button btnNewAddr = new Button("Add New Addresss");
+        btnNewAddr.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                returnBox.getChildren().remove(hboxOptions);
+                try { addNewAddressItem(null); } catch (Exception ex) {System.out.println(ex.getMessage());}
+                addNewAddressOptions();
+            }
+        });
+        hboxOptions.getChildren().add(btnNewAddr);
+
+        Button btnSaveChanges = new Button("Save Changes");
+        btnSaveChanges.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                //TODO - save here
+                System.out.println("Save changes to address here");
+
+                for (Node node: accountAddressContainer.getChildren()) {
+                    if(node instanceof VBox) {
+                        VBox nodeBox = (VBox)node;
+                        if(nodeBox.getId() != null){
+                            if(nodeBox.getId().startsWith(Integer.toString(Main.localUser.userAccount.getUserID()))){
+                                Object userData = node.getUserData();
+                                if(userData instanceof AddressItem) {
+                                    AddressItem itm = (AddressItem)userData;
+                                    System.out.println(itm.getID());
+                                    //TODO - Update classLocalUser with this new data
+                                    //TODO - Post the new data to the database
+                                }else {
+                                    System.out.println("data not found...");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        hboxOptions.getChildren().add(btnSaveChanges);
+
+        returnBox.getChildren().add(hboxOptions);
+        accountAddressContainer.getChildren().add(returnBox);
+    }
+
+
+    /*private VBox getAddressControl(boolean isFinal, VBox parentContainer, computerSystem.models.classLocalUser.Address addr) {
+        VBox returnBox = new VBox(); returnBox.getStyleClass().add("vboxAddressContainer"); returnBox.setVgrow(parentContainer, Priority.ALWAYS);
+
+        if(isFinal) {
+            HBox hBoxPostcode = new HBox(); hBoxPostcode.getStyleClass().add("stanrdardHBox"); hBoxPostcode.setStyle("-fx-alignment: CENTER;");
+            Button btnNewAddr = new Button("Add New Addresss");
+            btnNewAddr.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    returnBox.getChildren().remove(hBoxPostcode);
+                    accountAddressContainer.getChildren().add(accountAddressContainer.getChildren().toArray().length, getAddressControl(false, accountAddressContainer, null));
+                    accountAddressContainer.getChildren().add(accountAddressContainer.getChildren().toArray().length, getAddressControl(true, accountAddressContainer, null));
+                }
+            });
+            hBoxPostcode.getChildren().add(btnNewAddr);
+
+            Button btnSaveChanges = new Button("Save Changes");
+            btnSaveChanges.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    //TODO - save here
+                    System.out.println("Save changes to address here");
+                }
+            });
+            hBoxPostcode.getChildren().add(btnSaveChanges);
+
+            returnBox.getChildren().add(hBoxPostcode);
+        } else {
+            returnBox.getChildren().add(getAddressEntry(returnBox, "TextField", "Postcode", ""));
+            returnBox.getChildren().add(getAddressEntry(returnBox, "ChoiceBox", "Country", ""));
+            returnBox.getChildren().add(getAddressEntry(returnBox, "TextField", "Town/City/Region", ""));
+            returnBox.getChildren().add(getAddressEntry(returnBox, "TextField", "House Name", ""));
+            returnBox.getChildren().add(getAddressEntry(returnBox, "CheckBox", "Billing Address", ""));
+
+            Button btnDeleteAddress = new Button("Delete Address");
+            btnDeleteAddress.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    parentContainer.getChildren().remove(returnBox);
+                }
+            });
+            returnBox.getChildren().add(btnDeleteAddress);
+        }
+
+        return returnBox;
+    }*/
+
+    /*private HBox getAddressEntry(Node Parent, String ObjectType, String Title, String Value) {
+        HBox returnBox = new HBox(); returnBox.getStyleClass().add("stanrdardHBox"); returnBox.setHgrow(Parent, Priority.ALWAYS);
+        Label lbl = new Label(Title); lbl.getStyleClass().add("standardLabel"); lbl.setMinWidth(150); returnBox.getChildren().add(lbl);
+        switch(ObjectType) {
+            case "TextField":
+                TextField txtfld = new TextField(Value);
+                txtfld.setPromptText("Please enter " + Title + " here");
+                txtfld.setPrefWidth(300);
+                returnBox.getChildren().add(txtfld);
+                break;
+            case "ChoiceBox":
+                ChoiceBox chcBox = new ChoiceBox();
+                chcBox.getItems().add("oof");
+                chcBox.getItems().add("oof 2");
+                chcBox.setPrefWidth(300);
+                returnBox.getChildren().add(chcBox);
+                break;
+            case "CheckBox":
+                CheckBox chkBox = new CheckBox();
+                returnBox.getChildren().add(chkBox);
+                break;
+        }
+        return returnBox;
+    }*/
+
+    private HBox getCardControl() { return new HBox(); }
+
+    private HBox getOrderControl() { return new HBox(); }
+
+
 
     @FXML protected void initialize() {
         System.out.println("Accounts Initialized");
