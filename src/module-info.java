@@ -5,4 +5,5 @@ module ComputerSalesSystem {
 
     opens computerSystem.forms;
     opens computerSystem.forms.accounts;
+    opens computerSystem.forms.customControls;
 }
