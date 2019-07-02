@@ -1,4 +1,3 @@
-
 --[[ Project Structure ]]-- >>
     >computerSystem (package) - Master Package, containing the application
         >database (package) - Data package, contains all interaction and information with the Sqlite Database
@@ -37,3 +36,15 @@
 
 << --
 
+--[[ Setting up FontAwesomeFX ]]-- >>
+    https://bitbucket.org/Jerady/fontawesomefx/src/master/
+
+    1. Download from above website, FontAwesomeFX
+    2. Open Project Structure
+    3. Go to Global Libraries
+    4. Add fontawesomefx to there (only the .Jar file)
+    5. Right click on the newly create global library
+    6. Click add to modules (this project)
+    7. Completed.
+
+<< --
