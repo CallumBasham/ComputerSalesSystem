@@ -25,6 +25,17 @@ public class DatabaseInteraction {
                 }
                 return false;
             }
+            @SuppressWarnings("Duplicates")
+            public static boolean isAddressDuplicate(computerSystem.models.classes.Address _Address) {
+                try(Statement query = getQuery()) {
+                    int DupeCount = query.executeQuery("SELECT COUNT(*) Counted FROM tbAccounts WHERE UserID = " + Main.localUser.userAccount.getUserID() +" AND Postcode = '" + _Address.getPostcode() + "'").getInt("Counted");
+                    if(DupeCount > 0) { return true; }
+                }catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    return true;
+                }
+                return false;
+            }
 
             public static boolean isLoginCredentialsCorrect(String _Username, String _Password) {
                 try(Statement query = getQuery()) {
