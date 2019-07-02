@@ -73,10 +73,14 @@ public class DatabaseSchema {
         static class tbAddress{
             static String tbSchema = "CREATE TABLE IF NOT EXISTS tbAddress" +
                     "(" +
+                    //Primary Key
+                    "AddressID INTEGER PRIMARY KEY," +
                     //Foreign Key
                     "UserID INTEGER REFERENCES tbAccounts(UserID)," +
-                    "CountryID INTEGER REFERENCES lkCountry(CountryID)," +
+                    //"CountryID INTEGER REFERENCES lkCountry(CountryID)," +
+
                     // Personal Address
+                    "Country VARCHAR(50)," +
                     "Postcode VARCHAR(12)," +
                     "TownCityRegion STRING," +
                     "HouseName VARCHAR(50)," +
