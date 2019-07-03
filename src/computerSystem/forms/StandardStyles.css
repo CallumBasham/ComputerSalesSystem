@@ -4,7 +4,6 @@
     -fx-userVar-sidebar-text-color_OnHover: rgb(22, 169, 250);
 }
 
-
 /* Overriding Default Class/Control Styles */
 *TextField {
     -fx-border-color: lightblue;
@@ -137,3 +136,55 @@
 .sidebarMenuItemHBox:pressed .label {
     -fx-text-fill:red;
 }
+
+/*About me clickable sections */
+.aboutUsAccordion{
+    -fx-pref-width: 800;
+    -fx-pref-height: 400;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 0 0 18 18;
+    -fx-border-radius: 0 0 18 18;
+
+}
+
+.aboutUsAccordion .titled-pane{
+    -fx-background-color: transparent ;
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-font-family: "Courier-New";
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 20;
+    -fx-alignment: top-center;
+}
+
+.aboutUsAccordion .titled-pane .title{
+    -fx-background-color: transparent ;
+    -fx-border-color: -fx-userVar-sidebar-text-color;
+    -fx-pref-width: 140;
+    -fx-pref-height:40;
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 20;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+
+.aboutUsAccordion .titled-pane > *.content{
+    -fx-background-color: transparent ;
+    -fx-border-color: -fx-userVar-sidebar-text-color;
+    -fx-border-insets: 1 0 0 0, 0;
+    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 8 0 18 18;
+}
+
+.aboutUsAccordion .titled-pane:focused
+{
+-fx-font-weight: bolder;
+-fx-text-fill: rgb(22, 169, 250);
+}
+
