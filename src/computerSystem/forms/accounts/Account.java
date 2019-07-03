@@ -4,6 +4,7 @@ import computerSystem.forms.Master;
 import computerSystem.forms.customControls.*;
 import computerSystem.Main;
 import computerSystem.database.DatabaseInteraction;
+import computerSystem.models.classes.Address;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -13,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -23,6 +25,9 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Account {
 
@@ -53,9 +58,35 @@ public class Account {
     @FXML private ProgressIndicator     createPssField_Pass_Icon;
 
     //Account Form
+    //  Tab - Account
+    @FXML private ImageView accountImageView_tabAccount_userIcon;
+    @FXML private Button accountButton_tabAccount_userIcon;
+
+    @FXML private TextField accountTextField_tabAccount_username;
+    @FXML private ProgressIndicator accountTextField_tabAccount_username_Icon;
+
+    @FXML private TextField accountTextField_tabAccount_email;
+    @FXML private ProgressIndicator accountTextField_tabAccount_email_Icon;
+
+    @FXML private TextField accountTextField_tabAccount_phoneNumber;
+    @FXML private ProgressIndicator accountTextField_tabAccount_phoneNumber_Icon;
+
+    @FXML private CheckBox accountCheckBox_tabAccount_canContact;
+    //  Tab - Client
+    @FXML private ChoiceBox accountChoiceBox_tabAccount_title;
+    @FXML private ProgressIndicator accountChoiceBox_tabAccount_title_Icon;
+
+    @FXML private TextField accountTextField_tabAccount_forename;
+    @FXML private ProgressIndicator accountTextField_tabAccount_forename_Icon;
+
+    @FXML private TextField accountTextField_tabAccount_Surname;
+    @FXML private ProgressIndicator accountTextField_tabAccount_Surname_Icon;
+    //    //  Tab - Address
     @FXML private VBox                  accountAddressContainer;
-    @FXML private VBox                  accountCardsContainer;
+    //  Tab - Orders
     @FXML private VBox                  accountOrdersContainer;
+
+
 
     @FXML private void handleButtonClick(Event ev) {
         Button _handledObect = (Button)ev.getSource();
@@ -95,10 +126,10 @@ public class Account {
                         boolean isSuccess = DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser(
                                createTxtField_Username.getText(),
                                createPssField_Pass.getText(),
-                               false,
+                               0,
                                createTxtField_Email.getText(),
                                createTxtField_Phone.getText(),
-                               false,
+                               0,
                                 (String)createChcBx_Sex.getValue(),
                                 createTxtField_Forename.getText(),
                                 createTxtField_Surname.getText()
@@ -235,10 +266,21 @@ public class Account {
         TitledPane sentPane = (TitledPane)ev.getSource();
         try {
             switch(sentPane.getText()) {
+                case "Account":
+                    if(sentPane.isExpanded() == true) {
+                        //Dynamically update data here
+                        populateTab_Account();
+                    }
+                    break;
+                case "Client":
+                    if(sentPane.isExpanded() == true) {
+                        //Dynamically update data here
+                        populateTab_Client();
+                    }
+                    break;
                 case "Address":
                     if(sentPane.isExpanded() == true) {
                         if(accountAddressContainer.getChildren().toArray().length == 0) {
-
                             //Add an entry for each address
                             for (computerSystem.models.classes.Address addr : Main.localUser.userAddresses) {
                                 addNewAddressItem(addr);
@@ -251,11 +293,8 @@ public class Account {
                     break;
                 case "Cards":
                     if(sentPane.isExpanded() == true) {
-                        if(accountCardsContainer.getChildren().toArray().length == 0) {
-                            accountCardsContainer.getChildren().add(accountCardsContainer.getChildren().toArray().length, new Label("Lol memes2"));
-                        }
-                    } else {
-                        accountCardsContainer.getChildren().clear();
+                       //Dynamically update data here
+                        populateTab_Cards();
                     }
                     break;
                 case "Orders":
@@ -274,15 +313,37 @@ public class Account {
 
     }
 
+    private void populateTab_Account(){
+        accountTextField_tabAccount_username.setText(Main.localUser.userAccount.getUsername());
+        accountTextField_tabAccount_email.setText(Main.localUser.userAccount.getEmail());
+        accountTextField_tabAccount_phoneNumber.setText(Main.localUser.userAccount.getPhone());
+        accountCheckBox_tabAccount_canContact.setSelected(Main.localUser.userAccount.getCanContact());
+    }
+
+    private void populateTab_Client(){
+        accountTextField_tabAccount_forename.setText(Main.localUser.userClient.getForename());
+        accountTextField_tabAccount_Surname.setText(Main.localUser.userClient.getSurname());
+    }
+
+    private void populateTab_Cards(){
+
+    }
+
+
+    int AddressIDIncrementer = 0;
+
     private void addNewAddressItem (computerSystem.models.classes.Address addr) throws  Exception {
+        AddressIDIncrementer++;
         FXMLLoader instantiateAddressItem = masterController.getCustomControl("customControls/AddressItem.fxml");
         VBox loadAddressItem = instantiateAddressItem.load();
-       //loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + addr.getPostcode()); --TODO AMEND THIS
-        loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + "SO321HA");
+        if(addr != null) {
+            loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + addr.getAddressID());
+        } else {
+            loadAddressItem.setId(Main.localUser.userAccount.getUserID() + "-" + new Date().toString());
+        }
         AddressItem controlAddressItem = instantiateAddressItem.getController();
-        controlAddressItem.implimentDefaultData(addr);
+        controlAddressItem.implimentDefaultData(addr, AddressIDIncrementer);
         accountAddressContainer.getChildren().add(loadAddressItem);
-        System.out.println(loadAddressItem.getId());
     }
 
     private void addNewAddressOptions () {
@@ -304,26 +365,8 @@ public class Account {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //TODO - save here
-                System.out.println("Save changes to address here");
-
-                for (Node node: accountAddressContainer.getChildren()) {
-                    if(node instanceof VBox) {
-                        VBox nodeBox = (VBox)node;
-                        if(nodeBox.getId() != null){
-                            if(nodeBox.getId().startsWith(Integer.toString(Main.localUser.userAccount.getUserID()))){
-                                Object userData = node.getUserData();
-                                if(userData instanceof AddressItem) {
-                                    AddressItem itm = (AddressItem)userData;
-                                    System.out.println(itm.getID());
-                                    //TODO - Update classLocalUser with this new data
-                                    //TODO - Post the new data to the database
-                                }else {
-                                    System.out.println("data not found...");
-                                }
-                            }
-                        }
-                    }
-                }
+                AddressIDIncrementer = 0;
+               updateAddressData();
             }
         });
         hboxOptions.getChildren().add(btnSaveChanges);
@@ -331,6 +374,57 @@ public class Account {
         returnBox.getChildren().add(hboxOptions);
         accountAddressContainer.getChildren().add(returnBox);
     }
+
+    private void updateAddressData() {
+        for (Node node: accountAddressContainer.getChildren()) {
+            if(node instanceof VBox) {
+                VBox nodeBox = (VBox)node;
+                if(nodeBox.getId() != null){
+                    if(nodeBox.getId().startsWith(Integer.toString(Main.localUser.userAccount.getUserID()))){
+                        Object userData = node.getUserData();
+                        if(userData instanceof AddressItem) {
+                            AddressItem itm = (AddressItem)userData;
+                            System.out.println("Located Address Interface: " + itm.getAddressID());
+                            updatelocalUserAddress(itm);
+                        }else {
+                            System.out.println("data not found...");
+                        }
+                    }
+                }
+            }
+        }
+        Main.localUser.updateDatabase_userAddresses();
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void updatelocalUserAddress(AddressItem controller) {
+        boolean AddressLocated = false;
+
+        //If the address does exist, amend it
+        for (Address addr:Main.localUser.userAddresses) {
+            if(addr.getAddressID() == controller.getAddressID()){
+                AddressLocated = true;
+                addr.setPostcode(controller.getPostcode());
+                addr.setCountry(controller.getCountry());
+                addr.setTownCityRegion(controller.getTownCityRegion());
+                addr.setHouseName(controller.getHouseName());
+                addr.setBillingAddress(controller.getBillingAddress());
+            }
+        }
+
+        //If the address does not yet exist, create new entry
+        if(!AddressLocated) {
+            Address newAddress = new Address();
+            newAddress.setAddressID(controller.getAddressID());
+            newAddress.setPostcode(controller.getPostcode());
+            newAddress.setCountry(controller.getCountry());
+            newAddress.setTownCityRegion(controller.getTownCityRegion());
+            newAddress.setHouseName(controller.getHouseName());
+            newAddress.setBillingAddress(controller.getBillingAddress());
+            Main.localUser.userAddresses.add(newAddress);
+        }
+    }
+
 
 
     /*private VBox getAddressControl(boolean isFinal, VBox parentContainer, computerSystem.models.classLocalUser.Address addr) {
@@ -404,11 +498,6 @@ public class Account {
         }
         return returnBox;
     }*/
-
-    private HBox getCardControl() { return new HBox(); }
-
-    private HBox getOrderControl() { return new HBox(); }
-
 
 
     @FXML protected void initialize() {

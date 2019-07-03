@@ -3,7 +3,8 @@ package computerSystem.models;
 import computerSystem.database.DatabaseInteraction;
 import computerSystem.models.classes.Account;
 import computerSystem.models.classes.Address;
-import computerSystem.models.classes.Cards;
+import computerSystem.models.classes.Card;
+import computerSystem.models.classes.Card;
 import computerSystem.models.classes.Client;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class classLocalUser {
 
     public List<Address> userAddresses = new ArrayList<Address>();
 
-    public List<Cards> userCards = new ArrayList<Cards>();
+    public Card userCards = new Card();
 
    public classLocalUser() {
        System.out.println("Local User Initilized");
@@ -35,7 +36,17 @@ public class classLocalUser {
        userAccount.signOut();
        userClient.signOut();
        userAddresses =  new ArrayList<Address>();
-       userCards = new ArrayList<Cards>();
+       userCards.signOut();
+   }
+
+   public void updateDatabase_userAddresses() {
+       for (Address addr:userAddresses) {
+            if(DatabaseInteraction.StoredProcedures.Scalar.isAddressDuplicate(addr)){
+                DatabaseInteraction.StoredProcedures.NonQuery.updateAddress(addr);
+            } else {
+                DatabaseInteraction.StoredProcedures.NonQuery.postNewAddress(addr);
+            }
+       }
    }
 
 }

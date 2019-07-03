@@ -6,11 +6,11 @@ public class Account {
     private int UserID = 0;
     private String Username = "";
     //Password is only used at runtime in communication with the Database, once authenticated it will not need to be accessed except for changing password
-    private Boolean AccountType = false; //true = admin | false = user
+    private boolean AccountType = false; //true = admin | false = user
     private String Email = "";
     private String PhoneNumber = "";
     private String Picture = "";
-    private Boolean CanContact = false;
+    private boolean CanContact = false;
     private Boolean Autnenticated = false; //Used as the secure replacement for password
 
     public void signOut() {
@@ -23,12 +23,41 @@ public class Account {
         this.CanContact = false;
         this.Autnenticated = false;
     }
+    public void setUserID(int _UserID) {
+        this.UserID = _UserID;
+    }
     public int getUserID() { return this.UserID; }
 
     public void setUsername(String _Username) {
         this.Username = _Username;
     }
     public String getUsername() { return this.Username; }
+
+
+    public void setEmail(String _Email) {
+        this.Email = _Email;
+    }
+    public String getEmail() {return this.Email;}
+
+    public void setPhone(String _PhoneNumber) {
+        this.PhoneNumber = _PhoneNumber;
+    }
+    public String getPhone() {return this.PhoneNumber;}
+
+    public void setCanContact(boolean _CanContact) {this.CanContact = _CanContact; }
+    public boolean getCanContact() {
+        return this.CanContact;
+    }
+
+    public void setAccountType(boolean _Type) {
+        this.AccountType = _Type;
+    }
+
+    public void setAuthenticated(boolean _Authenticated) {
+        this.Autnenticated = _Authenticated;
+    }
+    public boolean getAuthenticated() { return this.Autnenticated; }
+
     public String verifyUsernameFormat(String _Username){
         String errorMsg = "";
         Pattern alphanumericRegex = Pattern.compile("^[a-zA-Z0-9]+$");
@@ -45,23 +74,6 @@ public class Account {
 
         return errorMsg;
     }
-
-    public void setEmail(String _Email) {
-        this.Email = _Email;
-    }
-
-    public void setPhone(String _PhoneNumber) {
-        this.PhoneNumber = _PhoneNumber;
-    }
-
-    public void setAccountType(boolean _Type) {
-        this.AccountType = _Type;
-    }
-
-    public void setAuthenticated(boolean _Authenticated) {
-        this.Autnenticated = _Authenticated;
-    }
-    public boolean getAuthenticated() { return this.Autnenticated; }
 
     public String verifyEmailFormat(String _Email){
         String errorMsg = "";

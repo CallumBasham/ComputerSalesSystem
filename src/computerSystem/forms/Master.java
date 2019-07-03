@@ -86,6 +86,9 @@ public class Master extends Application {
             } else if(box.getId().equals("Sidebar_btnAbout")) {
                 System.out.println("About Clicked!");
                 loadPage("About.fxml");
+            } else if(box.getId().equals("Sidebar_btnShop")) {
+                System.out.println("Shop Clicked!");
+                loadPage("shop/Shop.fxml");
             } else {
                 System.out.println("Unknown Clicked!");
                 loadPage("Temp_Placeholder.fxml");

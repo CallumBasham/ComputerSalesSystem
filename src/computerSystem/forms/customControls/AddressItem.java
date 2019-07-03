@@ -1,5 +1,7 @@
 package computerSystem.forms.customControls;
 
+import computerSystem.Main;
+import computerSystem.database.DatabaseInteraction;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -15,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class AddressItem implements Initializable {
 
-    public static int PrimaryKey = 0;
+    private int AddressID = 0;
 
     @FXML private VBox AddressItemContainer;
     @FXML private TextField addrPostcode;
@@ -25,31 +27,50 @@ public class AddressItem implements Initializable {
     @FXML private CheckBox addrBillingAddress;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) { }
 
-    }
-
-    public void implimentDefaultData(computerSystem.models.classes.Address addressData) {
+    public void implimentDefaultData(computerSystem.models.classes.Address addressData, int AddressIDIncrementer) {
         if(addressData != null) {
-            PrimaryKey = addressData.getAddressID();
+            AddressID = addressData.getAddressID();
             addrPostcode.setText(addressData.getPostcode());
             //add choice box here
             addrTownCityRegion.setText(addressData.getTownCityRegion());
             addrHouseName.setText(addressData.getHouseName());
             addrBillingAddress.setSelected(addressData.getBillingAddress());
+            System.out.println("AddressItem.fxml started with existing ID of " + AddressID);
         }else {
             //Empty data
-            PrimaryKey = 420;
+            AddressID = DatabaseInteraction.StoredProcedures.Scalar.getNextMaxAddressID() + AddressIDIncrementer;
+            System.out.println("AddressItem.fxml started with new ID of " + AddressID);
         }
 
 
     }
 
     @FXML private void handleDeleteClick(Event ev) {
+        System.out.println("AddressItem.fxml removing userAddresses with the ID of " + AddressID);
+        Main.localUser.userAddresses.removeIf(addr -> addr.getAddressID() == this.AddressID);
+        DatabaseInteraction.StoredProcedures.NonQuery.deleteAddress(this.AddressID);
         ((VBox)AddressItemContainer.getParent()).getChildren().remove(AddressItemContainer);
+        AddressItemContainer = null;
     }
 
-    public int getID() {
-        return PrimaryKey;
+    public int getAddressID() {
+        return AddressID;
+    }
+    public String getPostcode() {
+        return addrPostcode.getText();
+    }
+    public String getCountry() {
+        return (String)addrCountry.getValue();
+    }
+    public String getTownCityRegion() {
+        return addrTownCityRegion.getText();
+    }
+    public String getHouseName() {
+        return addrHouseName.getText();
+    }
+    public boolean getBillingAddress() {
+        return addrBillingAddress.isSelected();
     }
 }

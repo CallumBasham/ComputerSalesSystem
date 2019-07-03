@@ -21,7 +21,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TitledPane expanded="false" style="-fx-border-color: lightblue;;" styleClass="titlePane" text="Account" VBox.vgrow="ALWAYS">
+            <TitledPane expanded="false" onMouseClicked="#handleTitlePaneClick" style="-fx-border-color: lightblue;" styleClass="titlePane" text="Account" VBox.vgrow="ALWAYS">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="titlePaneAnchor">
                      <children>
@@ -31,12 +31,12 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                        <children>
-                                          <ImageView fitHeight="151.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="accountImageView_tabAccount_userIcon" fitHeight="151.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../content/Icon_Account.png" />
                                              </image>
                                           </ImageView>
-                                          <Button mnemonicParsing="false" text="Change Icon" />
+                                          <Button fx:id="accountButton_tabAccount_userIcon" mnemonicParsing="false" text="Change Icon" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
@@ -48,8 +48,8 @@
                                                          <Font name="System Bold" size="14.0" />
                                                      </font>
                                                 </Label>
-                                                 <TextField fx:id="loginTxtField_Username" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
-                                                 <ProgressIndicator fx:id="loginTxtField_Username_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                 <TextField fx:id="accountTextField_tabAccount_username" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
+                                                 <ProgressIndicator fx:id="accountTextField_tabAccount_username_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -59,8 +59,8 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="loginTxtField_Username1" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
-                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon1" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                <TextField fx:id="accountTextField_tabAccount_email" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your Email here" HBox.hgrow="NEVER" />
+                                                <ProgressIndicator fx:id="accountTextField_tabAccount_email_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -70,8 +70,8 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="loginTxtField_Username11" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
-                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon11" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                <TextField fx:id="accountTextField_tabAccount_phoneNumber" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your Phone Number here" HBox.hgrow="NEVER" />
+                                                <ProgressIndicator fx:id="accountTextField_tabAccount_phoneNumber_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="204.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -81,7 +81,7 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <CheckBox alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" />
+                                                <CheckBox fx:id="accountCheckBox_tabAccount_canContact" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -99,7 +99,7 @@
                      </children></AnchorPane>
               </content>
             </TitledPane>
-            <TitledPane animated="true" expanded="false" style="-fx-border-color: lightblue;" styleClass="titlePane" text="Client" VBox.vgrow="ALWAYS">
+            <TitledPane animated="true" expanded="false" onMouseClicked="#handleTitlePaneClick" style="-fx-border-color: lightblue;" styleClass="titlePane" text="Client" VBox.vgrow="ALWAYS">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="titlePaneAnchor">
                      <children>
@@ -116,7 +116,7 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                 <ChoiceBox fx:id="createChcBx_Sex" minHeight="25.0" minWidth="300.0" onAction="#handleOnAction" prefHeight="25.0" prefWidth="300.0">
+                                                 <ChoiceBox fx:id="accountChoiceBox_tabAccount_title" minHeight="25.0" minWidth="300.0" onAction="#handleOnAction" prefHeight="25.0" prefWidth="300.0">
                                                      <items>
                                                          <FXCollections fx:factory="observableArrayList">
                                                              <String fx:value="Male" />
@@ -126,7 +126,7 @@
                                                          </FXCollections>
                                                      </items>
                                                  </ChoiceBox>
-                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon1" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                <ProgressIndicator fx:id="accountChoiceBox_tabAccount_title_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -136,8 +136,8 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="loginTxtField_Username11" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
-                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon11" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                <TextField fx:id="accountTextField_tabAccount_forename" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
+                                                <ProgressIndicator fx:id="accountTextField_tabAccount_forename_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -147,8 +147,8 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="loginTxtField_Username111" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
-                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon111" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                                <TextField fx:id="accountTextField_tabAccount_Surname" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your username here" HBox.hgrow="NEVER" />
+                                                <ProgressIndicator fx:id="accountTextField_tabAccount_Surname_Icon" prefWidth="25.0" HBox.hgrow="NEVER" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -165,7 +165,7 @@
                      </children></AnchorPane>
               </content>
             </TitledPane>
-            <TitledPane animated="true" onMouseClicked="#handleTitlePaneClick" style="-fx-border-color: lightblue; " styleClass="titlePane" text="Address" VBox.vgrow="ALWAYS">
+            <TitledPane animated="true" expanded="false" onMouseClicked="#handleTitlePaneClick" style="-fx-border-color: lightblue; " styleClass="titlePane" text="Address" VBox.vgrow="ALWAYS">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="titlePaneAnchor">
                      <children>
@@ -182,11 +182,65 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="titlePaneAnchor">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="titleScollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <VBox fx:id="accountCardsContainer" alignment="TOP_CENTER" prefHeight="173.0" prefWidth="764.0" style="-fx-background-color: transparent;" />
-                           </content>
-                        </ScrollPane>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" minWidth="150.0" text="Card Number" textFill="WHITE" HBox.hgrow="NEVER">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="loginTxtField_Username1112" minHeight="25.0" minWidth="300.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="300.0" promptText="Please enter your card number here" />
+                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon11" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" minWidth="150.0" text="Expiry Date" textFill="WHITE" HBox.hgrow="NEVER">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="loginTxtField_Username11121" alignment="CENTER" maxWidth="100.0" minHeight="25.0" minWidth="115.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="100.0" promptText="MM" />
+                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" minWidth="30.0" text=" / " textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="loginTxtField_Username111211" alignment="CENTER" layoutX="180.0" layoutY="16.0" maxWidth="100.0" minHeight="25.0" minWidth="115.0" onKeyReleased="#handleTextChanged" prefHeight="25.0" prefWidth="100.0" promptText="YY" />
+                                                <ProgressIndicator fx:id="loginTxtField_Username_Icon111" prefWidth="25.0" HBox.hgrow="NEVER" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" minWidth="150.0" text="Card Type" textFill="WHITE" HBox.hgrow="NEVER">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" minWidth="300.0" text="Unknown" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Save Changes" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children></AnchorPane>
               </content>
             </TitledPane>

@@ -80,8 +80,8 @@ public class DatabaseSchema {
                     //"CountryID INTEGER REFERENCES lkCountry(CountryID)," +
 
                     // Personal Address
-                    "Country VARCHAR(50)," +
                     "Postcode VARCHAR(12)," +
+                    "Country VARCHAR(50)," +
                     "TownCityRegion STRING," +
                     "HouseName VARCHAR(50)," +
                     "BillingAddress BIT" +
@@ -102,6 +102,7 @@ public class DatabaseSchema {
             protected static String getSchema() { return tbSchema; }
         }
 
+        //RETIRED DUE TO TIME REMAINING
         static class lkCountry{
             static String tbSchema = "CREATE TABLE IF NOT EXISTS lkCountry" +
                     "(" +
@@ -112,6 +113,60 @@ public class DatabaseSchema {
                     ");";
             protected static String getSchema() { return tbSchema; }
         }
+
+        static class tbProducts {
+
+            static String tbSchema = "CREATE TABLE IF NOT EXISTS tbProducts" +
+                    "(" +
+                    //Primary Key
+                    "ProductID INTEGER PRIMARY KEY," +
+                    "ProductName VARCHAR(50)," + //Cosshair, Samsung                                                    Custom PC
+                    "ProductDescription VARCHAR(50)," +//Ram used to store memory
+                    "ProductPrice DOUBLE," + //£120.50
+                    "ProductCategory VARCHAR(50)" + //e.g. RAM                                                           CustomPC
+                    ");";
+            protected static String getSchema() { return tbSchema; }
+        }
+
+        static class tbProductExtentions {
+            static String tbSchema = "CREATE TABLE IF NOT EXISTS tbProductExtension" +
+                    "(" +
+                    //Primary Key
+                    "ExtensionID INTEGER PRIMARY KEY," +
+                    "ExtensionName VARCHAR(50)," + //4 GB, 8GB                  1 Year full cover
+                    "ExtensionDescription VARCHAR(50)," +                       //this covers this that and the other
+                    "ExtensionPrice DOUBLE," +//£24.50                          £10
+                    "ProductCategory VARCHAR(50)," +//e.g. as above, RAM        RAM                                                     Custom PC
+                    "ExtensionCategory VARCHAR(50)" +//Memory Size,            Warrenty
+                    ");";
+            protected static String getSchema() { return tbSchema; }
+        }
+
+        static class tbOrders {
+            static String tbSchema = "CREATE TABLE IF NOT EXISTS tbOrders" +
+                    "(" +
+                    //Primary Key
+                    "OrderID INTEGER PRIMARY KEY," +
+                    //Foreign Key
+                    "ProductID INTEGER REFERENCES tbProducts(ProductID)," +
+
+                    "OrderQuantity INTEGER," +
+                    "OrderTotalPrice DOUBLE" +
+                    ");";
+            protected static String getSchema() { return tbSchema; }
+        }
+
+        static class tbOrderExtensions {
+            static String tbSchema = "CREATE TABLE IF NOT EXISTS tbOrderExtensions" +
+                    "(" +
+                    //Primary Key
+                    "OrderExtensionID INTEGER PRIMARY KEY," +
+                    //Foreign Key
+                    "ExtensionID INTEGER REFERENCES tbProductExtension(ExtensionID)" +
+                    ");";
+            protected static String getSchema() { return tbSchema; }
+        }
+
     }
 
     public static void setupDatabase() {
@@ -169,6 +224,23 @@ public class DatabaseSchema {
             query.execute(Schema.tbCards.getSchema());
             System.out.println("\t>>> tbCards has been created!");
 
+            //Create Cards Table if not Exists
+            query.execute(Schema.tbProducts.getSchema());
+            System.out.println("\t>>> tbProducts has been created!");
+
+            //Create Cards Table if not Exists
+            query.execute(Schema.tbProductExtentions.getSchema());
+            System.out.println("\t>>> tbProductExtentions has been created!");
+
+            //Create Cards Table if not Exists
+            query.execute(Schema.tbOrders.getSchema());
+            System.out.println("\t>>> tbOrders has been created!");
+
+            //Create Cards Table if not Exists
+            query.execute(Schema.tbOrderExtensions.getSchema());
+            System.out.println("\t>>> tbOrderExtentions has been created!");
+
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
@@ -183,7 +255,7 @@ public class DatabaseSchema {
             if (query.executeQuery("SELECT COUNT(*) RowCount FROM tbAccounts WHERE AccountType = 0").getInt("RowCount") < 1) {
                 System.out.println("\t>>> tbAccounts Admin Account does not yet exist, creating now....");
                 query.close();
-                DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser("Admin", "Password", true, "Admin@ComputerSales.com", "07557676680", true, "Mr", "Admin", "ComputerSales");
+                DatabaseInteraction.StoredProcedures.NonQuery.isPostNewUser("Admin", "Password", 1, "Admin@ComputerSales.com", "07557676680", 1, "Mr", "Admin", "ComputerSales");
                 System.out.println("\t>>> tbAccounts Admin Account has been created!");
             }
         }catch(SQLException ex) {

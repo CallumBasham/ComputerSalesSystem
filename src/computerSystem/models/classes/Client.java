@@ -7,6 +7,14 @@ public class Client {
     private String Forename = "";
     private String Surname = "";
 
+    public void setTitle(String _Title) {this.Title = _Title;}
+    public void setForename(String _Forename) {this.Forename = _Forename;}
+    public void setSurname(String _Surname) {this.Surname= _Surname;}
+
+    public String getTitle() {return this.Title;}
+    public String getForename() {return this.Forename;}
+    public String getSurname() {return this.Surname;}
+
     public void signOut() {
         this.Title = "";
         this.Forename = "";
