@@ -120,6 +120,7 @@ public class DatabaseSchema {
                     "(" +
                     //Primary Key
                     "ProductID INTEGER PRIMARY KEY," +
+                    "ProductActive BIT," +
                     "ProductName VARCHAR(50)," + //Cosshair, Samsung                                                    Custom PC
                     "ProductDescription VARCHAR(50)," +//Ram used to store memory
                     "ProductPrice DOUBLE," + //£120.50
@@ -133,10 +134,11 @@ public class DatabaseSchema {
                     "(" +
                     //Primary Key
                     "ExtensionID INTEGER PRIMARY KEY," +
+                    "ExtensionActive BIT," +
                     "ExtensionName VARCHAR(50)," + //4 GB, 8GB                  1 Year full cover
                     "ExtensionDescription VARCHAR(50)," +                       //this covers this that and the other
                     "ExtensionPrice DOUBLE," +//£24.50                          £10
-                    "ProductCategory VARCHAR(50)," +//e.g. as above, RAM        RAM                                                     Custom PC
+                    "ProductCategory VARCHAR(50) REFERENCES tbProducts(ProductCategory)," +//e.g. as above, RAM        RAM                                                     Custom PC
                     "ExtensionCategory VARCHAR(50)" +//Memory Size,            Warrenty
                     ");";
             protected static String getSchema() { return tbSchema; }
