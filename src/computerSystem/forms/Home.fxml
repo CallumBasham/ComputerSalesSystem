@@ -3,24 +3,19 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="HomeAnchorPane" minWidth="800" prefHeight="600.0" prefWidth="800.0" stylesheets="@StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Home">
    <children>
-      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="imageParentAnchorPane" prefHeight="433.0" prefWidth="812.0" style="-fx-border-color: grey;" VBox.vgrow="ALWAYS">
+            <AnchorPane fx:id="imageParentAnchorPane" style="-fx-border-color: grey;" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="${imageParentAnchorPane.height / 1.004}" fitWidth="${imageParentAnchorPane.width / 1.004}" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@content/ComputerWallpaper.jpg" />
-                     </image>
-                  </ImageView>
+                  <Pane layoutX="-2.0" layoutY="-123.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="489.0" prefWidth="781.0" styleClass="homeImage" stylesheets="@StandardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_LEFT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" textOrigin="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
                   <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_RIGHT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: rgba(50, 50, 50, .75); -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
