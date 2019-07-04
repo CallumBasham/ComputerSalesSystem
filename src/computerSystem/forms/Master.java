@@ -11,10 +11,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -39,6 +41,14 @@ public class Master extends Application {
     @FXML private AnchorPane MasterContainer;
     @FXML private AnchorPane loaderAnchorPane;
     @FXML private MenuButton userAccountButton;
+    @FXML private ImageView accountIcon;
+    @FXML private ImageView aboutIcon;
+    @FXML private ImageView basketIcon;
+    @FXML private ImageView exitIcon;
+    @FXML private ImageView shopIcon;
+    @FXML private ImageView modeIcon;
+
+
 
     @Override public void start(Stage _primaryStage) throws Exception{
         //Initialize the JavaFX Application
@@ -46,6 +56,7 @@ public class Master extends Application {
         root = FXMLLoader.load(getClass().getResource("Master.fxml"));
         scene = new Scene(root, 1200, 800);
         stage.setScene(scene);
+        setUserAgentStylesheet("computerSystem/forms/StandardStyles.css");
 
         //Set Defaults
         stage.setTitle("3CS Computers");
@@ -109,6 +120,21 @@ public class Master extends Application {
             } else if(box.getId().equals("Sidebar_btnStock")) {
                 System.out.println("Shop Clicked!");
                 loadPage("shop/Inventory.fxml");
+                //((computerSystem.forms.shop.Inventory)returnData[1]).setup();
+            } else if(box.getId().equals("Sidebar_btnLM")) {
+                System.out.println("Mode Changed!");
+                if(getUserAgentStylesheet() == "computerSystem/forms/StandardStyles.css") {
+                    setUserAgentStylesheet("computerSystem/forms/StandardStylesLightMode.css");
+                    accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Account_LM.png"));
+                    aboutIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About_LM.png"));
+                    basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket_LM.png"));
+                    //exitIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Exit_LM.png"));
+                    shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop_LM.png"));
+                    //accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About_LM.png"));
+                } else {
+                    setUserAgentStylesheet("computerSystem/forms/StandardStyles.css");
+                }
+
                 //((computerSystem.forms.shop.Inventory)returnData[1]).setup();
             } else {
                 System.out.println("Unknown Clicked!");

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.About">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.About">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -48,7 +48,7 @@
                   </Label>
                </children>
             </HBox>
-            <Accordion styleClass="aboutUsAccordion" stylesheets="@StandardStyles.css" VBox.vgrow="ALWAYS">
+            <Accordion styleClass="aboutUsAccordion" VBox.vgrow="ALWAYS">
               <panes>
                 <TitledPane text="Charlotte Webster">
                   <content>
