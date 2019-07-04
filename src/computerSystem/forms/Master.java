@@ -60,20 +60,37 @@ public class Master extends Application {
 
     //Container Methods
     @SuppressWarnings("Duplicates")
-    public void loadPage(String FXMLFile) {
+    public Object[] loadPage(String FXMLFile) {
         AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
         pageContainer.getChildren().clear();
         try {
-            AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
+            //Load the FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLFile));
+            //AnchorPane LoadingPane = FXMLLoader.load(getClass().getResource(FXMLFile));
+            AnchorPane LoadingPane = loader.load();
+            Object controller = loader.getController();
+
+            //Set Defaults
             AnchorPane.setTopAnchor(LoadingPane, 0.0);
             AnchorPane.setBottomAnchor(LoadingPane, 0.0);
             AnchorPane.setLeftAnchor(LoadingPane, 0.0);
             AnchorPane.setRightAnchor(LoadingPane, 0.0);
             pageContainer.getChildren().add((LoadingPane));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            displayMasterDetails();
+            return new Object[] {LoadingPane, controller};
+        } catch (Exception ex) {
+            System.out.print("LOAD PAGE EXCEPTION:");
+            System.out.print(ex.getMessage());
+            System.out.print(ex.getCause());
+            System.out.println(ex.getLocalizedMessage());
+            System.out.println(ex.getStackTrace()[0]);
+            int i = 0;
+            while(i < ex.getStackTrace().length){
+                System.out.println(ex.getStackTrace()[i]);
+                i++;
+            }
+            return null;
         }
-        displayMasterDetails();
     }
 
 
@@ -92,6 +109,7 @@ public class Master extends Application {
             } else if(box.getId().equals("Sidebar_btnStock")) {
                 System.out.println("Shop Clicked!");
                 loadPage("shop/Inventory.fxml");
+                //((computerSystem.forms.shop.Inventory)returnData[1]).setup();
             } else {
                 System.out.println("Unknown Clicked!");
                 loadPage("Temp_Placeholder.fxml");

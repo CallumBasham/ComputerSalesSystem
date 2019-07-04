@@ -122,6 +122,7 @@ public class DatabaseSchema {
                     "ProductID INTEGER PRIMARY KEY," +
                     "ProductActive BIT," +
                     "ProductName VARCHAR(50)," + //Cosshair, Samsung                                                    Custom PC
+                    "ProductImage BLOB," +
                     "ProductDescription VARCHAR(50)," +//Ram used to store memory
                     "ProductPrice DOUBLE," + //£120.50
                     "ProductCategory VARCHAR(50)" + //e.g. RAM                                                           CustomPC

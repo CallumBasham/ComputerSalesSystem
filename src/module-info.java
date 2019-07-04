@@ -7,4 +7,6 @@ module ComputerSalesSystem {
     opens computerSystem.forms.accounts;
     opens computerSystem.forms.shop;
     opens computerSystem.forms.customControls;
+    opens computerSystem.models;
+    opens computerSystem.models.classes;
 }
