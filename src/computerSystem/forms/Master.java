@@ -130,9 +130,10 @@ public class Master extends Application {
                     basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket_LM.png"));
                     //exitIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Exit_LM.png"));
                     shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop_LM.png"));
-                    //accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About_LM.png"));
+                    modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_DarkMode.png"));
                 } else {
                     setUserAgentStylesheet("computerSystem/forms/StandardStyles.css");
+                    modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_LightMode.png"));
                 }
 
                 //((computerSystem.forms.shop.Inventory)returnData[1]).setup();

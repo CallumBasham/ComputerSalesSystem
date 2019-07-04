@@ -10,14 +10,14 @@
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: #dedede;
     -fx-text-fill: white;
 }
 *ChoiceBox {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: #dedede;
     -fx-text-fill: white;
 }
 *ChoiceBox .label {
@@ -25,13 +25,13 @@
 }
 *ChoiceBox .menu-item {
     -fx-border-color: lightblue;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: #dedede;
 }
 *PasswordField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: #dedede;
     -fx-text-fill: white;
 }
 *Button {
@@ -54,7 +54,7 @@
 
 /*.tableViewDefault .column-header,
 .tableViewDefault .column-header-background .filler {
-    -fx-background-color:  #4b4b4b;
+    -fx-background-color:  #dedede;
     -fx-border-color: lightblue;
 }
 .tableViewDefault .column-header .label {
@@ -120,15 +120,15 @@
 
 /* Container Grid */
 .background{
-    -fx-background-color: #484a4b;
+    -fx-background-color: #dedede;
 }
 
 .gridBackground{
-    -fx-background-color: #3d3f40;
+    -fx-background-color: #c4c4c4;
 }
 
 .sidebarTitle{
-    -fx-background-color: #4d5051;
+    -fx-background-color: #cccecf;
     -fx-alignment: CENTER_LEFT;
     -fx-pref-height: 30;
     -fx-pref-width: 140;
@@ -250,19 +250,18 @@
 -fx-font-weight: bolder;
 -fx-text-fill: rgb(22, 169, 250);
 }
-
 .homeImage{
     -fx-background-image: url("content/ComputerWallpaper.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     }
 }
 
 .greyBackground{
-    -fx-background-color: GREY;
+    -fx-background-color: LIGHTGREY;
 }
 
-.primaryLabel {
+/*Font colours*/
+.primaryLabel .text{
      -fx-text-fill: RED;
 }

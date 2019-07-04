@@ -208,9 +208,9 @@
                   </HBox>
                   <HBox fx:id="Sidebar_btnLM" layoutX="10.0" layoutY="433.0" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                        <ImageView fx:id="modeIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
-                              <Image url="@content/Icon_Shop.png" />
+                              <Image url="@content/Icon_LightMode.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" />
