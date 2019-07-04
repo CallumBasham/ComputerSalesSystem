@@ -23,7 +23,7 @@ public class classLocalUser {
     public Card userCards = new Card();
 
    public classLocalUser() {
-       System.out.println("Local User Initilized");
+       System.out.println("Local User Initialised");
    }
 
    public void populateDetails(){
