@@ -128,11 +128,14 @@ public class Master extends Application {
                     accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Account_LM.png"));
                     aboutIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About_LM.png"));
                     basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket_LM.png"));
-                    //exitIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Exit_LM.png"));
                     shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop_LM.png"));
                     modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_DarkMode.png"));
                 } else {
                     setUserAgentStylesheet("computerSystem/forms/StandardStyles.css");
+                    accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Account.png"));
+                    aboutIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About.png"));
+                    basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket.png"));
+                    shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop.png"));
                     modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_LightMode.png"));
                 }
 
