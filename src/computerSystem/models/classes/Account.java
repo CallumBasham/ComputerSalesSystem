@@ -11,7 +11,7 @@ public class Account {
     private String PhoneNumber = "";
     private String Picture = "";
     private boolean CanContact = false;
-    private Boolean Autnenticated = false; //Used as the secure replacement for password
+    private Boolean Authenticated = false; //Used as the secure replacement for password
 
     public void signOut() {
         this.UserID = 0;
@@ -21,7 +21,7 @@ public class Account {
         this.PhoneNumber = "";
         this.Picture = "";
         this.CanContact = false;
-        this.Autnenticated = false;
+        this.Authenticated = false;
     }
     public void setUserID(int _UserID) {
         this.UserID = _UserID;
@@ -54,9 +54,9 @@ public class Account {
     }
 
     public void setAuthenticated(boolean _Authenticated) {
-        this.Autnenticated = _Authenticated;
+        this.Authenticated = _Authenticated;
     }
-    public boolean getAuthenticated() { return this.Autnenticated; }
+    public boolean getAuthenticated() { return this.Authenticated; }
 
     public String verifyUsernameFormat(String _Username){
         String errorMsg = "";
