@@ -25,19 +25,19 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </FontAwesomeIcon>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="primaryLabel" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label styleClass="primaryLabel" text="Today's Deals" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Today's Deals">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="309.0" layoutY="10.0" styleClass="primaryLabel" text="Welcome to 3CS Computers, where computers are just a click away!" textFill="WHITE">
+                              <Label layoutX="309.0" layoutY="10.0" styleClass="primaryLabel" text="Welcome to 3CS Computers, where computers are just a click away!">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="165.0" layoutY="40.0" styleClass="primaryLabel" text="Please feel free to browse our latest deals, or contact us for further information." textFill="#dd5252">
+                              <Label layoutX="165.0" layoutY="40.0" styleClass="primaryLabel" text="Please feel free to browse our latest deals, or contact us for further information.">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -62,7 +62,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Accessibility" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Accessibility" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -82,7 +82,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Check Account" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Check Account" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -102,7 +102,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Visit Shop" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Visit Shop" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

@@ -42,11 +42,7 @@ public class Master extends Application {
     @FXML private AnchorPane loaderAnchorPane;
     @FXML private MenuButton userAccountButton;
     @FXML private ImageView accountIcon;
-    @FXML private ImageView aboutIcon;
-    @FXML private ImageView basketIcon;
-    @FXML private ImageView exitIcon;
-    @FXML private ImageView shopIcon;
-    @FXML private ImageView modeIcon;
+
 
 
 
@@ -125,18 +121,8 @@ public class Master extends Application {
                 System.out.println("Mode Changed!");
                 if(getUserAgentStylesheet() == "computerSystem/forms/StandardStyles.css") {
                     setUserAgentStylesheet("computerSystem/forms/StandardStylesLightMode.css");
-                    accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Account_LM.png"));
-                    aboutIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About_LM.png"));
-                    basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket_LM.png"));
-                    shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop_LM.png"));
-                    modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_DarkMode.png"));
                 } else {
                     setUserAgentStylesheet("computerSystem/forms/StandardStyles.css");
-                    accountIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Account.png"));
-                    aboutIcon.setImage(new Image("file:computerSystem/forms/content/Icon_About.png"));
-                    basketIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Basket.png"));
-                    shopIcon.setImage(new Image("file:computerSystem/forms/content/Icon_Shop.png"));
-                    modeIcon.setImage(new Image("file:computerSystem/forms/content/Icon_LightMode.png"));
                 }
 
                 //((computerSystem.forms.shop.Inventory)returnData[1]).setup();

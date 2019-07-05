@@ -10,28 +10,29 @@
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #dedede;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *ChoiceBox {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #dedede;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *ChoiceBox .label {
     -fx-text-fill: white;
 }
+
 *ChoiceBox .menu-item {
     -fx-border-color: lightblue;
-    -fx-background-color: #dedede;
+    -fx-background-color: GREY;
 }
 *PasswordField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #dedede;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *Button {
@@ -81,11 +82,11 @@
     -fx-font-size: 14;
 }
 .titlePane > .title{
-    -fx-background-color: #3d3f40;
+    -fx-background-color: LIGHTGREY;
 }
 
 .titlePaneAnchor {
-    -fx-background-color: #484a4b;
+    -fx-background-color: GREY;
 }
 
 .titleScollPane {
@@ -120,11 +121,11 @@
 
 /* Container Grid */
 .background{
-    -fx-background-color: #dedede;
+    -fx-background-color: WHITE;
 }
 
 .gridBackground{
-    -fx-background-color: #c4c4c4;
+    -fx-background-color: GREY;
 }
 
 .sidebarTitle{
@@ -214,7 +215,7 @@
 
 .aboutUsAccordion .titled-pane{
     -fx-background-color: transparent ;
-    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-text-fill: #1c1c1c;
     -fx-font-family: "Courier-New";
     -fx-font-weight: bold;
     -fx-font-style: italic;
@@ -227,7 +228,7 @@
     -fx-border-color: -fx-userVar-sidebar-text-color;
     -fx-pref-width: 140;
     -fx-pref-height:40;
-    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-text-fill: #1c1c1c;
     -fx-font-family: "Courier New";
     -fx-font-weight: bold;
     -fx-font-style: italic;
@@ -254,7 +255,6 @@
     -fx-background-image: url("content/ComputerWallpaper.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
-    }
 }
 
 .greyBackground{
@@ -262,6 +262,12 @@
 }
 
 /*Font colours*/
-.primaryLabel .text{
-     -fx-text-fill: RED;
+.primaryLabel{
+     -fx-text-fill: #1c1c1c;
+}
+.secondaryLabel{
+      -fx-text-fill: DARKGREY;
+}
+.TertiaryLabel{
+     -fx-text-fill: BLACK;
 }

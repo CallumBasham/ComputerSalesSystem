@@ -256,13 +256,18 @@
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-    }
 }
 
 .greyBackground{
     -fx-background-color: GREY;
 }
 
-.primaryLabel {
-     -fx-text-fill: RED;
+.primaryLabel{
+     -fx-text-fill: WHITE;
+}
+.secondaryLabel{
+      -fx-text-fill: LIGHTGREY;
+}
+.TertiaryLabel{
+     -fx-text-fill: DARKGREY;
 }
