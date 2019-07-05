@@ -57,12 +57,12 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;;">
                            <children>
-                              <FontAwesomeIcon fill="#727272" iconName="KEYBOARD_ALT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                              <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Accessibility" textFill="WHITE">
+                              <Label fx:id="homeShopBtn" text="Visit Shop" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -95,14 +95,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox fx:id="homeShopBtn" alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                        <HBox fx:id="homeExitBtn" alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
                            <children>
-                              <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                              <FontAwesomeIcon fill="#727272" iconName="POWER_OFF" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Visit Shop" textFill="WHITE">
+                              <Label text="Exit" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

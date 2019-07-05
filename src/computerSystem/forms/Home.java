@@ -1,5 +1,6 @@
 package computerSystem.forms;
 
+import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
@@ -16,5 +17,10 @@ public class Home {
             System.out.println("Shop Clicked!");
             master.loadPage("shop/Shop.fxml");
         }
+        else if (box.getId().equals("homeExitBtn")) {
+        System.out.println("Exit Clicked!");
+        System.exit(0);
+        }
     }
 }
+
