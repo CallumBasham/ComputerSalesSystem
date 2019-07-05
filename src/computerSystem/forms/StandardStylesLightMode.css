@@ -10,28 +10,29 @@
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *ChoiceBox {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *ChoiceBox .label {
     -fx-text-fill: white;
 }
+
 *ChoiceBox .menu-item {
     -fx-border-color: lightblue;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: GREY;
 }
 *PasswordField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #4b4b4b;
+    -fx-background-color: DARKGREY;
     -fx-text-fill: white;
 }
 *Button {
@@ -54,7 +55,7 @@
 
 /*.tableViewDefault .column-header,
 .tableViewDefault .column-header-background .filler {
-    -fx-background-color:  #4b4b4b;
+    -fx-background-color:  #dedede;
     -fx-border-color: lightblue;
 }
 .tableViewDefault .column-header .label {
@@ -81,11 +82,11 @@
     -fx-font-size: 14;
 }
 .titlePane > .title{
-    -fx-background-color: #3d3f40;
+    -fx-background-color: LIGHTGREY;
 }
 
 .titlePaneAnchor {
-    -fx-background-color: #484a4b;
+    -fx-background-color: GREY;
 }
 
 .titleScollPane {
@@ -120,15 +121,15 @@
 
 /* Container Grid */
 .background{
-    -fx-background-color: #484a4b;
+    -fx-background-color: WHITE;
 }
 
 .gridBackground{
-    -fx-background-color: #3d3f40;
+    -fx-background-color: GREY;
 }
 
 .sidebarTitle{
-    -fx-background-color: #4d5051;
+    -fx-background-color: #cccecf;
     -fx-alignment: CENTER_LEFT;
     -fx-pref-height: 30;
     -fx-pref-width: 140;
@@ -214,7 +215,7 @@
 
 .aboutUsAccordion .titled-pane{
     -fx-background-color: transparent ;
-    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-text-fill: #1c1c1c;
     -fx-font-family: "Courier-New";
     -fx-font-weight: bold;
     -fx-font-style: italic;
@@ -227,7 +228,7 @@
     -fx-border-color: -fx-userVar-sidebar-text-color;
     -fx-pref-width: 140;
     -fx-pref-height:40;
-    -fx-text-fill: -fx-userVar-sidebar-text-color;
+    -fx-text-fill: #1c1c1c;
     -fx-font-family: "Courier New";
     -fx-font-weight: bold;
     -fx-font-style: italic;
@@ -250,24 +251,23 @@
 -fx-font-weight: bolder;
 -fx-text-fill: rgb(22, 169, 250);
 }
-
 .homeImage{
     -fx-background-image: url("content/ComputerWallpaper.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
 .greyBackground{
-    -fx-background-color: GREY;
+    -fx-background-color: LIGHTGREY;
 }
 
+/*Font colours*/
 .primaryLabel{
-     -fx-text-fill: WHITE;
+     -fx-text-fill: #1c1c1c;
 }
 .secondaryLabel{
-      -fx-text-fill: LIGHTGREY;
+      -fx-text-fill: DARKGREY;
 }
 .TertiaryLabel{
-     -fx-text-fill: DARKGREY;
+     -fx-text-fill: BLACK;
 }
