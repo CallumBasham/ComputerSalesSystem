@@ -75,7 +75,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;;">
+                        <HBox fx:id="homeAccountBtn" alignment="CENTER_LEFT" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;;">
                            <children>
                               <FontAwesomeIcon fill="#727272" iconName="USER" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
@@ -95,7 +95,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                        <HBox fx:id="homeShopBtn" alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
                            <children>
                               <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
