@@ -1,5 +1,6 @@
 package computerSystem.models;
 
+import computerSystem.database.DatabaseInteraction;
 import computerSystem.models.classes.Product;
 
 import java.util.ArrayList;
@@ -17,4 +18,7 @@ public class classLocalShop {
             localProductsList.add(new Product(4, true, "Razer Kracken", "Headphone", 250, "C"));
         }
 
+        public void importShopData() {
+            DatabaseInteraction.StoredProcedures.Tabular.getShopDetails();
+        }
 }

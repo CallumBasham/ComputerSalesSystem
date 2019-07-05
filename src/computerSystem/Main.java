@@ -2,6 +2,7 @@ package computerSystem;
 
 import computerSystem.database.DatabaseSchema;
 import computerSystem.forms.Master;
+import computerSystem.models.classes.Product;
 
 public class Main {
 
@@ -21,6 +22,5 @@ public class Main {
 
         //Initiate the UI
         Master.initMaster();
-
     }
 }
