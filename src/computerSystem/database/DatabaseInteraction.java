@@ -2,8 +2,13 @@ package computerSystem.database;
 
 import computerSystem.Main;
 import computerSystem.models.classes.Address;
+import computerSystem.models.classes.Product;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.io.*;
 import java.sql.*;
+import javafx.embed.swing.SwingFXUtils;
 
 @SuppressWarnings("Duplicates")
 public class DatabaseInteraction {
@@ -26,6 +31,15 @@ public class DatabaseInteraction {
                     return true;
                 }
                 return false;
+            }
+
+            public static int getNextMaxProductID() {
+                try(Statement query = getQuery()) {
+                    return query.executeQuery("SELECT MAX(ProductID) MaxID FROM tbProducts").getInt("MaxID") + 1;
+                }catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    return 0;
+                }
             }
 
             public static boolean isAddressDuplicate(computerSystem.models.classes.Address _Address) {
@@ -112,14 +126,49 @@ public class DatabaseInteraction {
                         addr.setBillingAddress(userAddressResults.getBoolean("BillingAddress"));
                         Main.localUser.userAddresses.add(addr);
                     }
-
                 }catch(Exception ex) {
                     System.out.println("Exception Reached");
                     System.out.println(ex.getMessage());
                 }
             }
-        }
 
+            public static void getShopDetails() {
+                try(Statement query = getQuery()) {
+                    ResultSet productResults = query.executeQuery("SELECT * FROM tbProducts");
+                    while(productResults.next()) {
+                        System.out.println(productResults.getInt("ProductID") + productResults.getString("ProductName"));
+                        Product product = new Product(
+                                productResults.getInt("ProductID"),
+                                productResults.getBoolean("ProductActive"),
+                                productResults.getString("ProductName"),
+                                productResults.getString("ProductDescription"),
+                                productResults.getDouble("ProductBasePrice"),
+                                productResults.getString("ProductCategory")
+                        );
+
+                        //Write to File
+                        if(productResults.getBytes("ProductImage") != null){
+                            OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                            outputFile.write(productResults.getBytes("ProductImage"));
+                            outputFile.close();
+
+                            File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                            System.out.println(file.toURI().toString());
+                            Image img = new Image(file.toURI().toString());
+                            product.setProductImageFile(file);
+                            product.setProductImage(img);
+                        }
+
+                        Main.localShop.localProductsList.add(product);
+                    }
+                    productResults.close();
+                }catch(Exception ex) {
+                    System.out.println("Exception Reached");
+                    System.out.println(ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        }
 
         public static class NonQuery {
 
@@ -177,6 +226,69 @@ public class DatabaseInteraction {
                 return true;
             }
 
+            public static boolean postNewProduct(Product _Product){
+                try(Statement query = getQuery()) {
+                    System.out.println("Adding new product with the ProductID of" + _Product.getProductID());
+                    //Create primary key entry in tbAccounts
+                    query.execute("INSERT INTO tbProducts (ProductID, ProductActive, ProductName, ProductDescription, ProductBasePrice, ProductCategory)" +
+                            "VALUES(" +
+                            "" + _Product.getProductID() + "," +
+                            "" + _Product.getProductActive() + "," +
+                            "'" + _Product.getProductName() + "'," +
+                            "'" + _Product.getProductDescription() + "'," +
+                            "" + _Product.getProductBasePrice() + "," +
+                            "'" + _Product.getProductCategory() + "'" +
+                            ")");
+                    System.out.println("product added!");
+                }catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    return false;
+                }
+                return true;
+            }
+
+            public static boolean updateProduct(Product _Product) {
+                try(Statement query = getQuery()) {
+                    System.out.println("Updating product with the ProductID of" + _Product.getProductID());
+
+                    FileInputStream fis = new FileInputStream(_Product.getProductImageFile());
+                    int fileLength = (int)_Product.getProductImageFile().length();
+
+                    var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection());
+
+                    PreparedStatement prep = conn.prepareStatement("UPDATE tbProducts " +
+                            "SET ProductActive = " + _Product.getProductActive() + "," +
+                            "ProductName = '" + _Product.getProductName() + "'," +
+                            "ProductDescription = '" + _Product.getProductDescription() + "'," +
+                            "ProductBasePrice = " + _Product.getProductBasePrice() + "," +
+                            "ProductCategory = '" + _Product.getProductCategory() + "', " +
+                            "ProductImage = ? " +
+                            "WHERE ProductID = " + _Product.getProductID() + ";");
+                    prep.setBinaryStream(1, fis, fileLength);
+
+                    prep.executeUpdate();
+
+                    conn.close();
+                    System.out.println("Address updated!");
+                }catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    return false;
+                }
+                return true;
+            }
+
+            public static boolean deleteProduct(Product _Product) {
+                try(Statement query = getQuery()) {
+                    System.out.println("Deleting Product with the ProductID of " + _Product.getProductID());
+                    //Create primary key entry in tbAccounts
+                    query.execute("DELETE FROM tbProducts WHERE ProductID = " + _Product.getProductID() + ";");
+                    System.out.println("Deleted Product!");
+                }catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    return false;
+                }
+                return true;
+            }
 
             public static boolean isPostNewUser(String _Username, String _Password, int _AccountType, String _Email, String _PhoneNumber, int _CanContact, String _Title, String _Forename, String _Surname) {
                 try(Statement query = getQuery()) {
@@ -217,7 +329,5 @@ public class DatabaseInteraction {
             }
 
         }
-
     }
-
 }
