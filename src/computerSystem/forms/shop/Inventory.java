@@ -19,6 +19,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.util.Date;
+
 
 public class Inventory {
 
@@ -29,9 +31,8 @@ public class Inventory {
 
     @FXML Button shopButton_Inventory_addProduct;
 
-
     @FXML protected void initialize() {
-        Main.localShop.populateTestDataSet();
+        shopTableView_Inventory_tbProducts_DataSource = FXCollections.observableArrayList();
 
         System.out.println("Inventory Initialized");
 
@@ -78,38 +79,40 @@ public class Inventory {
                                         Product currentProduct = getTableView().getItems().get(getIndex());
                                         System.out.println(currentProduct.getProductName()+ "   " + currentProduct.getProductBasePrice());
                                         //person.setProductName("Delete Requested lol");
-                                        Alert al = new Alert(Alert.AlertType.CONFIRMATION, "About to delete: ... are you sure?", ButtonType.YES, ButtonType.CANCEL);
+                                        Alert al = new Alert(Alert.AlertType.CONFIRMATION, "About to delete: " + currentProduct.getProductName() + " (ID: " + currentProduct.getProductID() + ")\nAre you sure?", ButtonType.YES, ButtonType.CANCEL);
                                         al.showAndWait();
-                                        if(al.getResult() == ButtonType.YES) { System.out.println("Yes"); } else {System.out.println("No");}
-
-                                        //TODO - Make sure it does not have active orders
-                                        shopTableView_Inventory_tbProducts_DataSource.remove(currentProduct);
-                                        Main.localShop.localProductsList.remove(currentProduct);
-                                        //TODO - Finally delete from the database as well
-                                        shopTableView_Inventory_tbProducts.refresh();
+                                        if(al.getResult() == ButtonType.YES) {
+                                            //TODO - Make sure it does not have active orders
+                                            //shopTableView_Inventory_tbProducts_DataSource.remove(currentProduct);
+                                            int getLastLocation = super.getIndex();
+                                            Main.localShop.localProductsList.remove(currentProduct);
+                                            getProductItems();
+                                            DatabaseInteraction.StoredProcedures.NonQuery.deleteProduct(currentProduct);
+                                            shopTableView_Inventory_tbProducts.scrollTo(getLastLocation);
+                                            //TODO - Finally delete from the database as well
+                                            //hopTableView_Inventory_tbProducts.refresh();
+                                        }
                                     });
                                     editProduct.setOnAction(event -> {
-                                        Product person = getTableView().getItems().get(getIndex());
-                                        System.out.println(person.getProductName() + "   " + person.getProductBasePrice());
-
                                         try {
+                                            Product product = getTableView().getItems().get(getIndex());
+                                            System.out.println(product.getProductName() + "   " + product.getProductBasePrice());
                                             FXMLLoader newLoader = masterController.getCustomControl("shop/InventoryProductEdit.fxml");
                                             Parent root = newLoader.load();
                                             Stage newStage = new Stage();
                                             newStage.initModality(Modality.APPLICATION_MODAL);
                                             newStage.setTitle("Amend Lol");
-                                            Scene scn = new Scene(root, 1000, 800);
+                                            Scene scn = new Scene(root, 800, 400);
                                             newStage.setScene(scn);
-                                            newStage.setAlwaysOnTop(true);
-
-                                            newStage.show();
-
+                                            //newStage.setAlwaysOnTop(true);
+                                            InventoryProductEdit controller = newLoader.getController();
+                                            controller.setup(product);
+                                            newStage.showAndWait();
+                                            getProductItems();
+                                            shopTableView_Inventory_tbProducts.scrollTo(product);
                                         } catch (Exception ex) {
-                                            System.out.println(ex.getMessage());
+                                            masterController.printFullException(ex);
                                         }
-
-                                        //person.setProductName("Save Requested lol");
-                                        //hopTableView_Inventory_tbProducts.refresh();
                                     });
                                     setGraphic(parentHBox);
                                     //setText("rip");
@@ -127,15 +130,18 @@ public class Inventory {
     }
 
     @FXML private void handleClick_addProduct(Event ev) {
-        //TODO - get a new Max ProductID
-        shopTableView_Inventory_tbProducts_DataSource.add(new Product(0, false, "", "", 0, ""));
-        shopTableView_Inventory_tbProducts.refresh();
+        Product newProduct = new Product(DatabaseInteraction.StoredProcedures.Scalar.getNextMaxProductID(), false, "New Item", "Created: " + new Date(), 0, "");
+        Main.localShop.localProductsList.add(newProduct);
+        DatabaseInteraction.StoredProcedures.NonQuery.postNewProduct(newProduct);
+        getProductItems();
+        shopTableView_Inventory_tbProducts.scrollTo(shopTableView_Inventory_tbProducts.getItems().toArray().length);
     }
 
     private void getProductItems() {
-        shopTableView_Inventory_tbProducts_DataSource = FXCollections.observableArrayList();
+        shopTableView_Inventory_tbProducts_DataSource.clear();
         shopTableView_Inventory_tbProducts_DataSource.addAll(Main.localShop.localProductsList);
         shopTableView_Inventory_tbProducts.setItems(shopTableView_Inventory_tbProducts_DataSource);
+        shopTableView_Inventory_tbProducts.refresh();
     }
 
 }
