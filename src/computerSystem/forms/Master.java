@@ -20,7 +20,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Master extends Application {
@@ -56,6 +55,8 @@ public class Master extends Application {
         loadPage("Home.fxml"); //TODO - Switch to Home.fxml
 
         System.out.println("--[[ UI Finished Loading! ]]--");
+
+        Main.localShop.importShopData();
     }
 
     //Container Methods
@@ -79,16 +80,7 @@ public class Master extends Application {
             displayMasterDetails();
             return new Object[] {LoadingPane, controller};
         } catch (Exception ex) {
-            System.out.print("LOAD PAGE EXCEPTION:");
-            System.out.print(ex.getMessage());
-            System.out.print(ex.getCause());
-            System.out.println(ex.getLocalizedMessage());
-            System.out.println(ex.getStackTrace()[0]);
-            int i = 0;
-            while(i < ex.getStackTrace().length){
-                System.out.println(ex.getStackTrace()[i]);
-                i++;
-            }
+            printFullException(ex);
             return null;
         }
     }
@@ -157,14 +149,28 @@ public class Master extends Application {
 
     public FXMLLoader getCustomControl(String FXMLFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("customControls/AddressItem.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLFile));
             //Node returnNode = FXMLLoader.load(getClass().getResource("customControls/AddressItem.fxml"));
             //return new Object[] {returnNode, };
             return loader;
-        } catch(Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            printFullException(ex);
             return null;
         }
     }
+
+    public void printFullException(Exception ex) {
+        System.out.print("LOAD PAGE EXCEPTION:");
+        System.out.print(ex.getMessage());
+        System.out.print(ex.getCause());
+        System.out.println(ex.getLocalizedMessage());
+        System.out.println(ex.getStackTrace()[0]);
+        int i = 0;
+        while (i < ex.getStackTrace().length) {
+            System.out.println(ex.getStackTrace()[i]);
+            i++;
+        }
+    }
+
 
 }
