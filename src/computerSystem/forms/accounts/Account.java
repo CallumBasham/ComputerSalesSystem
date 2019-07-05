@@ -5,6 +5,8 @@ import computerSystem.forms.customControls.*;
 import computerSystem.Main;
 import computerSystem.database.DatabaseInteraction;
 import computerSystem.models.classes.Address;
+import computerSystem.models.classes.Order;
+import computerSystem.models.classes.Product;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -261,7 +263,6 @@ public class Account {
         }
     }
 
-
     @FXML private void handleTitlePaneClick(Event ev) {
         TitledPane sentPane = (TitledPane)ev.getSource();
         try {
@@ -300,7 +301,7 @@ public class Account {
                 case "Orders":
                     if(sentPane.isExpanded() == true) {
                         if(accountOrdersContainer.getChildren().toArray().length == 0) {
-                            accountOrdersContainer.getChildren().add(new Label("Lol memes3"));
+                            addAllOrders();
                         }
                     } else {
                         accountOrdersContainer.getChildren().clear();
@@ -311,6 +312,33 @@ public class Account {
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    private void addAllOrders(){
+        accountOrdersContainer.getChildren().clear();
+        for (Order order:Main.localOrder.localOrdersList) {
+            VBox newBox = new VBox();
+            accountOrdersContainer.setVgrow(newBox, Priority.ALWAYS);
+
+
+            newBox.setStyle("-fx-background-color: rgba(100, 100, 100, .2); -fx-border-color: lightblue; -fx-border-radius: 10; -fx-background-radius: 10;");
+            newBox.setSpacing(1);
+
+            newBox.getChildren().add(new Label("Order ID: " + order.getOrderID()));
+            newBox.getChildren().add(new Label("Order Price: " + order.getOrderTotalPrice()));
+            newBox.getChildren().add(new Label("Order Quantity: " + order.getOrderQuantity()));
+            for(Product prod:Main.localShop.localProductsList) {
+                if(prod.getProductID() == order.getProductID()){
+                    newBox.getChildren().add(new Label("Product Name: " + prod.getProductName()));
+                    newBox.getChildren().add(new Label("Product Category: " + prod.getProductCategory()));
+                }
+            }
+
+            accountOrdersContainer.getChildren().add(newBox);
+        }
+
+        
+        
     }
 
     private void populateTab_Account(){
@@ -328,7 +356,6 @@ public class Account {
     private void populateTab_Cards(){
 
     }
-
 
     int AddressIDIncrementer = 0;
 

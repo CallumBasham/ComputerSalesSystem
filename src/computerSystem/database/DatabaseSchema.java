@@ -96,8 +96,8 @@ public class DatabaseSchema {
                     "UserID INTEGER REFERENCES tbAccounts(UserID)," +
                     //Personal Address
                     "CardNumber VARCHAR(20)," + //Encrypted
-                    "ExpiryDate DATE" +
-
+                    "ExpiryMonth INTEGER," +
+                    "ExpiryYear INTEGER" +
                     ");";
             protected static String getSchema() { return tbSchema; }
         }

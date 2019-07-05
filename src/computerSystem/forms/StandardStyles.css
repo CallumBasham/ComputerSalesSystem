@@ -9,6 +9,7 @@
 *TextField {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
+    -fx-min-height: 25;
     -fx-background-radius: 10;
     -fx-background-color: #4b4b4b;
     -fx-text-fill: white;
@@ -37,9 +38,11 @@
 *Button {
     -fx-border-color: lightblue;
     -fx-border-radius: 10;
+    -fx-min-height: 25;
     -fx-background-radius: 10;
     -fx-background-color: rgba(50, 50, 200, .1);
     -fx-text-fill: white;
+    -fx-min-width: 100;
     -fx-text-alignment: CENTER;
     -fx-content-display: CENTER;
     -fx-alignment: CENTER;
@@ -141,21 +144,20 @@
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-family: Arial;
-    -fx-font-size: 12;
+    -fx-font-size: 14;
+    -fx-min-width: 100;
+    -fx-min-height: 20;
 }
 .sidebarMenuButton > .label {
     -fx-text-fill: -fx-userVar-sidebar-text-color;
     -fx-font-family: Arial;
-    -fx-font-size: 12;
-}
-.sidebarMenuButton > .Image {
-    -fx-background-color: red;
+    -fx-font-size: 14;
 }
 .sidebarMenuButton:hover{
     /*-fx-border-color: transparent, #9604ff;*/
     -fx-border-style: solid;
     /*-fx-border-insets: 1 1 1 1, 0;*/
-   /*-fx-background-color: transparent;*/
+    /*-fx-background-color: transparent;*/
     /*-fx-background-radius: 0, 0;*/
     -fx-border-color: rgb(22, 169, 250);
     -fx-border-width: 0px 0px 3px 0px;
@@ -185,7 +187,7 @@
     -fx-border-color: transparent, #9604ff;
     -fx-border-style: solid;
     -fx-border-insets: 1 1 1 1, 0;
-    -fx-background-color: transparent;
+    -fx-background-color: lightgrey;
     -fx-background-radius: 0, 0;
     -fx-border-color: rgb(22, 169, 250);
     -fx-border-width: 0px 0px 0px 3px;
@@ -195,7 +197,7 @@
     /*-fx-padding: 0 0 0 11;*/
     -fx-font-weight: bold;
     -fx-text-fill: -fx-userVar-sidebar-text-color_OnHover;
-    }
+}
 .sidebarMenuItemHBox:pressed .label {
     -fx-text-fill:red;
 }
@@ -247,8 +249,8 @@
 
 .aboutUsAccordion .titled-pane:focused
 {
--fx-font-weight: bolder;
--fx-text-fill: rgb(22, 169, 250);
+    -fx-font-weight: bolder;
+    -fx-text-fill: rgb(22, 169, 250);
 }
 
 .homeImage{
@@ -263,11 +265,11 @@
 }
 
 .primaryLabel{
-     -fx-text-fill: WHITE;
+    -fx-text-fill: WHITE;
 }
 .secondaryLabel{
-      -fx-text-fill: LIGHTGREY;
+    -fx-text-fill: LIGHTGREY;
 }
 .TertiaryLabel{
-     -fx-text-fill: DARKGREY;
+    -fx-text-fill: DARKGREY;
 }

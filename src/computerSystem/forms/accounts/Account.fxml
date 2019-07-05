@@ -248,9 +248,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="titlePaneAnchor">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="titleScollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="titleScollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <VBox fx:id="accountOrdersContainer" alignment="TOP_CENTER" prefHeight="173.0" prefWidth="764.0" />
+                              <VBox fx:id="accountOrdersContainer" alignment="TOP_CENTER" spacing="5.0" />
                            </content>
                         </ScrollPane>
                      </children></AnchorPane>

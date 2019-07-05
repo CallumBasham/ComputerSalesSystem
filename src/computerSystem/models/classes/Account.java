@@ -33,6 +33,7 @@ public class Account {
     }
     public String getUsername() { return this.Username; }
 
+    public boolean getAccountType() {return this.AccountType; }
 
     public void setEmail(String _Email) {
         this.Email = _Email;

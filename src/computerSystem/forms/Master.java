@@ -42,9 +42,6 @@ public class Master extends Application {
     @FXML private MenuButton userAccountButton;
     @FXML private ImageView accountIcon;
 
-
-
-
     @Override public void start(Stage _primaryStage) throws Exception{
         //Initialize the JavaFX Application
         stage = _primaryStage;
@@ -93,7 +90,6 @@ public class Master extends Application {
         }
     }
 
-
     //Events
     @FXML private void handleClick(Event ev) {
         HBox box = (HBox)ev.getSource();
@@ -108,7 +104,11 @@ public class Master extends Application {
                 loadPage("shop/Shop.fxml");
             } else if(box.getId().equals("Sidebar_btnStock")) {
                 System.out.println("Shop Clicked!");
-                loadPage("shop/Inventory.fxml");
+                //Admin Only
+                if(Main.localUser.userAccount.getAuthenticated() && Main.localUser.userAccount.getAccountType()){
+                    loadPage("shop/Inventory.fxml");
+                }
+
                 //((computerSystem.forms.shop.Inventory)returnData[1]).setup();
             } else if(box.getId().equals("Sidebar_btnLM")) {
                 System.out.println("Mode Changed!");
@@ -121,7 +121,6 @@ public class Master extends Application {
                 //((computerSystem.forms.shop.Inventory)returnData[1]).setup();
             } else {
                 System.out.println("Unknown Clicked!");
-                loadPage("Temp_Placeholder.fxml");
             }
 
     }
@@ -158,9 +157,22 @@ public class Master extends Application {
                 });
                 userBtn.getItems().add(menuitemSignOut);
 
+                if(Main.localUser.userAccount.getAccountType()){
+                    HBox adminCtrl1 = (HBox) root.lookup("#adminTitle"); adminCtrl1.setVisible(true);
+                    HBox adminCtrl2 = (HBox) root.lookup("#Sidebar_btnAccounts"); adminCtrl2.setVisible(true);
+                    HBox adminCtrl3 = (HBox) root.lookup("#Sidebar_btnStock"); adminCtrl3.setVisible(true);
+                } else {
+                    HBox adminCtrl1 = (HBox) root.lookup("#adminTitle"); adminCtrl1.setVisible(false);
+                    HBox adminCtrl2 = (HBox) root.lookup("#Sidebar_btnAccounts"); adminCtrl2.setVisible(false);
+                    HBox adminCtrl3 = (HBox) root.lookup("#Sidebar_btnStock"); adminCtrl3.setVisible(false);
+                }
             }
+
         } else {
             userBtn.setText("Login");
+            HBox adminCtrl1 = (HBox) root.lookup("#adminTitle"); adminCtrl1.setVisible(false);
+            HBox adminCtrl2 = (HBox) root.lookup("#Sidebar_btnAccounts"); adminCtrl2.setVisible(false);
+            HBox adminCtrl3 = (HBox) root.lookup("#Sidebar_btnStock"); adminCtrl3.setVisible(false);
         }
     }
 
