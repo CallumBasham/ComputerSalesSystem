@@ -2,6 +2,7 @@ package computerSystem.database;
 
 import computerSystem.Main;
 import computerSystem.models.classes.Address;
+import computerSystem.models.classes.Order;
 import computerSystem.models.classes.Product;
 import javafx.scene.image.Image;
 
@@ -56,6 +57,16 @@ public class DatabaseInteraction {
             public static int getNextMaxAddressID() {
                 try(Statement query = getQuery()) {
                     int DupeCount = query.executeQuery("SELECT MAX(AddressID) MaxID FROM tbAddress").getInt("MaxID");
+                    return DupeCount + 1;
+                }catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    return 0;
+                }
+            }
+
+            public static int getNextMaxOrderID() {
+                try(Statement query = getQuery()) {
+                    int DupeCount = query.executeQuery("SELECT MAX(OrderID) MaxID FROM tbOrders").getInt("MaxID");
                     return DupeCount + 1;
                 }catch (SQLException ex) {
                     System.out.println(ex.getMessage());
@@ -250,24 +261,35 @@ public class DatabaseInteraction {
             public static boolean updateProduct(Product _Product) {
                 try(Statement query = getQuery()) {
                     System.out.println("Updating product with the ProductID of" + _Product.getProductID());
-
-                    FileInputStream fis = new FileInputStream(_Product.getProductImageFile());
-                    int fileLength = (int)_Product.getProductImageFile().length();
-
                     var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection());
+                    if(_Product.getProductImageFile() != null)
+                    {
+                        FileInputStream fis = new FileInputStream(_Product.getProductImageFile());
+                        int fileLength = (int)_Product.getProductImageFile().length();
 
-                    PreparedStatement prep = conn.prepareStatement("UPDATE tbProducts " +
-                            "SET ProductActive = " + _Product.getProductActive() + "," +
-                            "ProductName = '" + _Product.getProductName() + "'," +
-                            "ProductDescription = '" + _Product.getProductDescription() + "'," +
-                            "ProductBasePrice = " + _Product.getProductBasePrice() + "," +
-                            "ProductCategory = '" + _Product.getProductCategory() + "', " +
-                            "ProductImage = ? " +
-                            "WHERE ProductID = " + _Product.getProductID() + ";");
-                    prep.setBinaryStream(1, fis, fileLength);
 
-                    prep.executeUpdate();
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbProducts " +
+                                "SET ProductActive = " + _Product.getProductActive() + "," +
+                                "ProductName = '" + _Product.getProductName() + "'," +
+                                "ProductDescription = '" + _Product.getProductDescription() + "'," +
+                                "ProductBasePrice = " + _Product.getProductBasePrice() + "," +
+                                "ProductCategory = '" + _Product.getProductCategory() + "', " +
+                                "ProductImage = ? " +
+                                "WHERE ProductID = " + _Product.getProductID() + ";");
+                        prep.setBinaryStream(1, fis, fileLength);
+                        prep.executeUpdate();
 
+
+                    } else {
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbProducts " +
+                                "SET ProductActive = " + _Product.getProductActive() + "," +
+                                "ProductName = '" + _Product.getProductName() + "'," +
+                                "ProductDescription = '" + _Product.getProductDescription() + "'," +
+                                "ProductBasePrice = " + _Product.getProductBasePrice() + "," +
+                                "ProductCategory = '" + _Product.getProductCategory() + "' " +
+                                "WHERE ProductID = " + _Product.getProductID() + ";");
+                        prep.executeUpdate();
+                    }
                     conn.close();
                     System.out.println("Address updated!");
                 }catch (Exception ex) {
@@ -284,6 +306,27 @@ public class DatabaseInteraction {
                     query.execute("DELETE FROM tbProducts WHERE ProductID = " + _Product.getProductID() + ";");
                     System.out.println("Deleted Product!");
                 }catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                    return false;
+                }
+                return true;
+            }
+
+            public static boolean postNewOrder(Order _Order) {
+                try(Statement query = getQuery()) {
+                    System.out.println("Adding new order with the OrderID of" + _Order.getOrderID());
+                    //Create primary key entry in tbAccounts
+                    query.execute("INSERT INTO tbOrders (OrderID, ProductID, UserID, OrderQuantity, OrderTotalPrice, OrderExtras)" +
+                            "VALUES(" +
+                            "" + _Order.getOrderID() + "," +
+                            "" + _Order.getProductID() + "," +
+                            "" + _Order.getUserID() + "," +
+                            "" + _Order.getOrderQuantity() + "," +
+                            "" + _Order.getOrderTotalPrice() + "," +
+                            "'" + _Order.getOrderExtras() + "'" +
+                            ")");
+                    System.out.println("Order added!");
+                }catch (Exception ex) {
                     System.out.println(ex.getMessage());
                     return false;
                 }

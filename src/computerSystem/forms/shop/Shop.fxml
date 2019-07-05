@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -23,7 +27,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField promptText="Enter your search here" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="inventorypProductEdit_TextField_productSearch" onKeyReleased="#handleSearchTextChanged" promptText="Enter your search here" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -32,7 +36,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass="titlePaneAnchor" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" minWidth="150.0" HBox.hgrow="NEVER">
+                  <VBox alignment="TOP_CENTER" minWidth="150.0" spacing="20.0" HBox.hgrow="NEVER">
                      <children>
                         <Label alignment="CENTER" minWidth="150.0" text="Filters" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -42,6 +46,31 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="2.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" minWidth="150.0" text="Category" textFill="WHITE" VBox.vgrow="NEVER" />
+                              <ChoiceBox fx:id="shopChoiceBox_Shop_searchFilterCategory" prefWidth="150.0" onAction="#handleSearchCategoryChanged">
+                              <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="All" />
+                                    <String fx:value="RAM" />
+                                    <String fx:value="Hard Drive" />
+                                    <String fx:value="Solid State Drive" />
+                                    <String fx:value="Power Supply" />
+                                    <String fx:value="Case" />
+                                    <String fx:value="Graphics Card" />
+                                    <String fx:value="Processor" />
+                                    <String fx:value="Monitor" />
+                                    <String fx:value="Keyboard" />
+                                    <String fx:value="Mouse" />
+                                    <String fx:value="Speakers" />
+                                    <String fx:value="Headphones" />
+                                    <String fx:value="Flash Drive" />
+                                    <String fx:value="Custom PC Build" />
+                                 </FXCollections>
+                              </items>
+                              </ChoiceBox>
+                           </children></VBox>
                      </children>
                   </VBox>
                   <ScrollPane hbarPolicy="NEVER" styleClass="titleScollPane" HBox.hgrow="ALWAYS">

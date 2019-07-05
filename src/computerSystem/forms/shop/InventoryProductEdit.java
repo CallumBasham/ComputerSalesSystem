@@ -5,9 +5,10 @@ import computerSystem.database.DatabaseInteraction;
 import computerSystem.models.classes.Product;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,6 +23,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileFilter;
 import java.net.URI;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class InventoryProductEdit {
@@ -39,7 +42,7 @@ public class InventoryProductEdit {
 
     @FXML private TextField inventorypProductEdit_TextField_productBasePrice;
 
-    @FXML private TextField inventorypProductEdit_TextField_productCategory;
+    @FXML private ChoiceBox inventorypProductEdit_ChoiceBox_productCategory;
 
     @FXML private Button inventorypProductEdit_Button_save;
 
@@ -59,8 +62,7 @@ public class InventoryProductEdit {
         inventorypProductEdit_CheckBox_productActive.setSelected(product.getProductActive());
         inventorypProductEdit_TextField_productDescription.setText(product.getProductDescription());
         inventorypProductEdit_TextField_productBasePrice.setText(String.valueOf(product.getProductBasePrice()));
-        inventorypProductEdit_TextField_productCategory.setText(product.getProductCategory());
-
+        inventorypProductEdit_ChoiceBox_productCategory.getSelectionModel().select(product.getProductCategory());
     }
 
     @FXML private void handle_Cancel_Click(Event ev){
@@ -74,7 +76,7 @@ public class InventoryProductEdit {
         sentProduct.setProductImage(inventorypProductEdit_ImageView_productImage.getImage());
         sentProduct.setProductDescription(inventorypProductEdit_TextField_productDescription.getText());
         sentProduct.setProductBasePrice(Double.valueOf(inventorypProductEdit_TextField_productBasePrice.getText()));
-        sentProduct.setProductCategory(inventorypProductEdit_TextField_productCategory.getText());
+        sentProduct.setProductCategory((String)inventorypProductEdit_ChoiceBox_productCategory.getSelectionModel().getSelectedItem());
         Main.localShop.localProductsList.add(sentProduct);
         DatabaseInteraction.StoredProcedures.NonQuery.updateProduct(sentProduct);
         ((Stage)((Button)ev.getSource()).getScene().getWindow()).close();
@@ -96,4 +98,5 @@ public class InventoryProductEdit {
             System.out.println(ex.getMessage());
         }
     }
+
 }

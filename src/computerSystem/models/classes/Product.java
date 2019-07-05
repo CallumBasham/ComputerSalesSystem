@@ -51,11 +51,3 @@ public class Product  {
     public void setProductCategory(String _ProductCategory) { this.ProductCategory = _ProductCategory; }
 
 }
-
-class RAM extends Product {
-    public String lol = "";
-}
-
-class GraphicsCard extends Product {
-
-}

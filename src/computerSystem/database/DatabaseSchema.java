@@ -103,7 +103,7 @@ public class DatabaseSchema {
         }
 
         //RETIRED DUE TO TIME REMAINING
-        static class lkCountry{
+        /*static class lkCountry{
             static String tbSchema = "CREATE TABLE IF NOT EXISTS lkCountry" +
                     "(" +
                     //Primary Key
@@ -112,7 +112,7 @@ public class DatabaseSchema {
                     "CountryName VARCHAR(100)" +
                     ");";
             protected static String getSchema() { return tbSchema; }
-        }
+        }*/
 
         static class tbProducts {
 
@@ -130,7 +130,7 @@ public class DatabaseSchema {
             protected static String getSchema() { return tbSchema; }
         }
 
-        static class tbProductExtentions {
+        /*static class tbProductExtentions {
             static String tbSchema = "CREATE TABLE IF NOT EXISTS tbProductExtension" +
                     "(" +
                     //Primary Key
@@ -143,7 +143,7 @@ public class DatabaseSchema {
                     "ExtensionCategory VARCHAR(50)" +//Memory Size,            Warrenty
                     ");";
             protected static String getSchema() { return tbSchema; }
-        }
+        }*/
 
         static class tbOrders {
             static String tbSchema = "CREATE TABLE IF NOT EXISTS tbOrders" +
@@ -152,14 +152,16 @@ public class DatabaseSchema {
                     "OrderID INTEGER PRIMARY KEY," +
                     //Foreign Key
                     "ProductID INTEGER REFERENCES tbProducts(ProductID)," +
+                    "UserID INTEGER REFERENCES tbAccounts(UserID)," +
 
                     "OrderQuantity INTEGER," +
-                    "OrderTotalPrice DOUBLE" +
+                    "OrderTotalPrice DOUBLE," +
+                    "OrderExtras VARCHAR(4000)" +
                     ");";
             protected static String getSchema() { return tbSchema; }
         }
 
-        static class tbOrderExtensions {
+        /*static class tbOrderExtensions {
             static String tbSchema = "CREATE TABLE IF NOT EXISTS tbOrderExtensions" +
                     "(" +
                     //Primary Key
@@ -168,7 +170,7 @@ public class DatabaseSchema {
                     "ExtensionID INTEGER REFERENCES tbProductExtension(ExtensionID)" +
                     ");";
             protected static String getSchema() { return tbSchema; }
-        }
+        }*/
 
     }
 
@@ -208,8 +210,8 @@ public class DatabaseSchema {
         try(java.sql.Connection conn = DriverManager.getConnection(Connection.getDBNConnection()); Statement query = conn.createStatement()) {
 
             //Create Country Lookup Table if not Exists
-            query.execute(Schema.lkCountry.getSchema());
-            System.out.println("\t>>> lkCountry has been created!");
+            //uery.execute(Schema.lkCountry.getSchema());
+            //System.out.println("\t>>> lkCountry has been created!");
 
             //Create Accounts Table if not Exists
             query.execute(Schema.tbAccounts.getSchema());
@@ -232,16 +234,16 @@ public class DatabaseSchema {
             System.out.println("\t>>> tbProducts has been created!");
 
             //Create Cards Table if not Exists
-            query.execute(Schema.tbProductExtentions.getSchema());
-            System.out.println("\t>>> tbProductExtentions has been created!");
+            //query.execute(Schema.tbProductExtentions.getSchema());
+            //System.out.println("\t>>> tbProductExtentions has been created!");
 
             //Create Cards Table if not Exists
             query.execute(Schema.tbOrders.getSchema());
             System.out.println("\t>>> tbOrders has been created!");
 
             //Create Cards Table if not Exists
-            query.execute(Schema.tbOrderExtensions.getSchema());
-            System.out.println("\t>>> tbOrderExtentions has been created!");
+            //query.execute(Schema.tbOrderExtensions.getSchema());
+            //System.out.println("\t>>> tbOrderExtentions has been created!");
 
 
         } catch (SQLException ex) {
@@ -265,7 +267,7 @@ public class DatabaseSchema {
             System.out.println(ex.getMessage());
         }
 
-        try(Statement query = DatabaseInteraction.getQuery()) {
+        /*try(Statement query = DatabaseInteraction.getQuery()) {
             //Populate the lkCountries lookup table
             if(query.executeQuery("SELECT COUNT(*) RowCount FROM lkCountry").getInt("RowCount") < 236) {
                 System.out.println("\t>>> lkCountries requires the list of countries imported, creating now....");
@@ -305,7 +307,7 @@ public class DatabaseSchema {
         } catch (SAXException e) {
             e.printStackTrace();
             return false;
-        }
+        }*/
         return true;
     }
 
