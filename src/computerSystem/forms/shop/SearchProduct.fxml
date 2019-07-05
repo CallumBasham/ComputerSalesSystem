@@ -13,7 +13,7 @@
             <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="NEVER">
                <children>
                   <ImageView fx:id="searchProduct_ImageView_proejctImage" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="searchProduct_Button_viewProduct" mnemonicParsing="false" text="View Product" VBox.vgrow="NEVER" />
+                  <Button fx:id="searchProduct_Button_viewProduct" onMouseClicked="#handleProductClick" mnemonicParsing="false" text="View Product" VBox.vgrow="NEVER" />
                </children>
          <HBox.margin>
             <Insets bottom="10.0" left="10.0" top="10.0" />

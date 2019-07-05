@@ -57,6 +57,7 @@ public class Master extends Application {
         System.out.println("--[[ UI Finished Loading! ]]--");
 
         Main.localShop.importShopData();
+        Main.localOrder.getOrders();
     }
 
     //Container Methods
