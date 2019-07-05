@@ -9,35 +9,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="HomeAnchorPane" minWidth="800" prefHeight="600.0" prefWidth="800.0" stylesheets="@StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Home">
+<AnchorPane fx:id="HomeAnchorPane" minWidth="800" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Home">
    <children>
       <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="imageParentAnchorPane" style="-fx-border-color: grey;" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane layoutX="-2.0" layoutY="-123.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="489.0" prefWidth="781.0" styleClass="homeImage" stylesheets="@StandardStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane layoutX="-2.0" layoutY="-123.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="489.0" prefWidth="781.0" styleClass="homeImage" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_LEFT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" textOrigin="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
                   <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_RIGHT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: rgba(50, 50, 50, .75); -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 10;" styleClass="greyBackground" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
                         <FontAwesomeIcon fill="#727272" iconName="INFO_CIRCLE" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                         </FontAwesomeIcon>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="primaryLabel" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Today's Deals" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Today's Deals">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="309.0" layoutY="10.0" text="Welcome to 3CS Computers, where computers are just a click away!" textFill="WHITE">
+                              <Label layoutX="309.0" layoutY="10.0" styleClass="primaryLabel" text="Welcome to 3CS Computers, where computers are just a click away!">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="165.0" layoutY="40.0" text="Please feel free to browse our latest deals, or contact us for further information." textFill="WHITE">
+                              <Label layoutX="165.0" layoutY="40.0" styleClass="primaryLabel" text="Please feel free to browse our latest deals, or contact us for further information.">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -55,14 +55,14 @@
                <children>
                   <HBox alignment="CENTER" layoutY="84.0" prefHeight="80.0" prefWidth="751.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="greyBackground">
                            <children>
-                              <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                              <FontAwesomeIcon fill="#727272" iconName="KEYBOARD_ALT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label fx:id="homeShopBtn" text="Visit Shop" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Accessibility" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -75,14 +75,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox fx:id="homeAccountBtn" alignment="CENTER_LEFT" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="greyBackground">
                            <children>
                               <FontAwesomeIcon fill="#727272" iconName="USER" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Check Account" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Check Account" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -95,14 +95,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox fx:id="homeExitBtn" alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" onMouseClicked="#handleClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: grey;">
+                        <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="greyBackground">
                            <children>
-                              <FontAwesomeIcon fill="#727272" iconName="POWER_OFF" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                              <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </FontAwesomeIcon>
-                              <Label text="Exit" textFill="WHITE">
+                              <Label styleClass="primaryLabel" text="Visit Shop" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

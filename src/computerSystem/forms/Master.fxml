@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="MasterContainer" prefHeight="600.0" prefWidth="800.0" stylesheets="@StandardStyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Master">
+<AnchorPane fx:id="MasterContainer" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="computerSystem.forms.Master">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -64,7 +64,7 @@
                   </HBox>
                   <HBox fx:id="Sidebar_btnHome" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                        <ImageView fx:id="accountIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
                               <Image url="@content/Icon_Account.png" />
                            </image>
@@ -87,7 +87,7 @@
                   </HBox>
                   <HBox fx:id="Sidebar_btnAbout" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                        <ImageView fx:id="aboutIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
                               <Image url="@content/Icon_About.png" />
                            </image>
@@ -110,7 +110,7 @@
                   </HBox>
                   <HBox fx:id="Sidebar_btnShop" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                        <ImageView fx:id="shopIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
                               <Image url="@content/Icon_Shop.png" />
                            </image>
@@ -133,7 +133,7 @@
                   </HBox>
                   <HBox fx:id="Sidebar_btnBasket" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
                      <children>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                        <ImageView fx:id="basketIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
                            <image>
                               <Image url="@content/Icon_Basket.png" />
                            </image>
@@ -197,6 +197,26 @@
                            </HBox.margin>
                         </ImageView>
                         <Label text="Inventory" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnLM" layoutX="10.0" layoutY="433.0" onMouseClicked="#handleClick" styleClass="sidebarMenuItemHBox">
+                     <children>
+                        <ImageView fx:id="modeIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_LightMode.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Light Mode" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
