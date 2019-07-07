@@ -1,5 +1,5 @@
 --[[ Project Structure ]]-- >>
-    >computerSystem (package) - Master Package, containing the application
+    >com.computerSystem (package) - Master Package, containing the application
         >database (package) - Data package, contains all interaction and information with the Sqlite Database
             >DatabaseInteraction (class) - Class for all communication with the database, e.g. posting and retrieving data
             >DatabaseSchema (class) - Class containing the database structure and connections, used by DatabaseInteraction to connect
@@ -47,4 +47,46 @@
     6. Click add to modules (this project)
     7. Completed.
 
+<< --
+
+--[[ Useful Links ]]-- >>
+    https://stackoverflow.com/questions/7709041/javac-is-not-recognized-as-an-internal-or-external-command-operable-program-or
+
+<< --
+
+--[[ How to run a Compiled Jar ]]-- >>
+    (From Command Line)
+    java -jar "Path To APP"
+
+    Example Below:
+    java --module-path "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\Libraries\JavaFX12\lib" --add-modules javafx.controls,javafx.fxml -jar "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\out\artifacts\ComputerSalesSystem_jar\ComputerSalesSystem.jar"
+
+<< --
+
+--[[ Backup of Module-Info.java ]]-- >>
+    module ComputerSalesSystem {
+        requires javafx.fxml;
+        requires javafx.controls;
+        requires java.sql;
+        requires java.desktop;
+        requires javafx.swing;
+        requires javafx.graphics;
+        requires javafx.media;
+        requires javafx.base;
+        requires javafx.web;
+        /*opens com.computerSystem.forms;
+        opens com.computerSystem.forms.accounts;
+        opens com.computerSystem.forms.shop;
+        opens com.computerSystem.forms.customControls;
+        opens com.computerSystem.models;
+        opens com.computerSystem.models.classes;*/
+
+        opens com.computerSystem.forms;
+        opens com.computerSystem.forms.accounts;
+        opens com.computerSystem.forms.shop;
+        opens com.computerSystem.forms.customControls;
+        opens com.computerSystem.models;
+        opens com.computerSystem.models.classes;
+        opens com.computerSystem.models.classes.productOptionalExtras;
+    }
 << --

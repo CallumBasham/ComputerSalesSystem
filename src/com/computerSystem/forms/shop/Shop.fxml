@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ShopAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.computerSystem.forms.shop.Shop">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="20.0" styleClass="titlePaneAnchor">
+               <children>
+                  <Label alignment="CENTER" minWidth="110.0" text="Search" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="NEVER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="inventorypProductEdit_TextField_productSearch" onKeyReleased="#handleSearchTextChanged" promptText="Enter your search here" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass="titlePaneAnchor" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" minWidth="150.0" spacing="20.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Label alignment="CENTER" minWidth="150.0" text="Filters" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="2.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label alignment="CENTER" minWidth="150.0" text="Category" textFill="WHITE" VBox.vgrow="NEVER" />
+                              <ChoiceBox fx:id="shopChoiceBox_Shop_searchFilterCategory" onAction="#handleSearchCategoryChanged" prefWidth="150.0">
+                              <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="All" />
+                                    <String fx:value="RAM" />
+                                    <String fx:value="Hard Drive" />
+                                    <String fx:value="Solid State Drive" />
+                                    <String fx:value="Power Supply" />
+                                    <String fx:value="Case" />
+                                    <String fx:value="Graphics Card" />
+                                    <String fx:value="Processor" />
+                                    <String fx:value="Monitor" />
+                                    <String fx:value="Keyboard" />
+                                    <String fx:value="Mouse" />
+                                    <String fx:value="Speakers" />
+                                    <String fx:value="Headphones" />
+                                    <String fx:value="Flash Drive" />
+                                    <String fx:value="Custom PC Build" />
+                                 </FXCollections>
+                              </items>
+                              </ChoiceBox>
+                           </children></VBox>
+                     </children>
+                  </VBox>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="ScrollPane_Shop_InventoryScroller" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="shopVBox_Shop_searchFilter" alignment="TOP_CENTER" spacing="5.0" HBox.hgrow="ALWAYS" />
+                              <Pane maxWidth="30.0" minWidth="30.0" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

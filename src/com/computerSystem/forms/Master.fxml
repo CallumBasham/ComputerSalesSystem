@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="masterContainer" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.computerSystem.forms.Master">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <Pane prefHeight="446.0" prefWidth="5.0" styleClass="Multi_Master_BackgroundGrid" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <HBox prefHeight="5.0" prefWidth="778.0" styleClass="Multi_Master_BackgroundGrid" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="590.0" prefWidth="140.0" spacing="10.0" styleClass="Multi_Master_BackgroundGrid" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@content/Icon_Account.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <MenuButton fx:id="userAccountButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#accountHandleClick" styleClass="MenuButton_Master_SidebarButton" text="Login" textFill="WHITE" />
+                  <HBox styleClass="HBox_Master_SidebarTitle">
+                     <children>
+                        <Label text="Options" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnHome" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fx:id="accountIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Account.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                        </ImageView>
+                        <Label text="Home" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnAbout" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fx:id="aboutIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_About.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                        </ImageView>
+                        <Label text="About" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnShop" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fx:id="shopIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Shop.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                        </ImageView>
+                        <Label text="Shop" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnAccessibility" layoutX="10.0" layoutY="433.0" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fx:id="modeIcon" fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_LightMode.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                        </ImageView>
+                        <Label text="Change Style" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="adminTitle" styleClass="HBox_Master_SidebarTitle">
+                     <children>
+                        <Label text="Admin" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnAccounts" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Account.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Accounts" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Sidebar_btnStock" onMouseClicked="#handleClick" styleClass="HBox_Master_SidebarButton">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@content/Icon_Shop.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="0.6" contrast="-0.5" hue="-0.1" saturation="-0.07" />
+                           </effect>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Inventory" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <Pane prefHeight="5.0" prefWidth="778.0" styleClass="Multi_Master_BackgroundGrid" />
+         </top>
+         <center>
+            <AnchorPane fx:id="loaderAnchorPane" styleClass="AnchorPane_Master_Background" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

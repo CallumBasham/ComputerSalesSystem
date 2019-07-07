@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="HomeAnchorPane" minWidth="800" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.computerSystem.forms.Home">
+   <children>
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="imageParentAnchorPane" style="-fx-border-color: grey;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane layoutX="-2.0" layoutY="-123.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="489.0" prefWidth="781.0" styleClass="Pane_Home_BackgroundImage" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_LEFT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" textOrigin="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <FontAwesomeIcon boundsType="VISUAL" fill="#727272" iconName="ARROW_CIRCLE_O_RIGHT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="HBox_Home_ImageOverlay" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                     <children>
+                        <FontAwesomeIcon fill="#727272" iconName="INFO_CIRCLE" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </FontAwesomeIcon>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="primaryLabel" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="primaryLabel" text="Today's Deals">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="309.0" layoutY="10.0" styleClass="primaryLabel" text="Welcome to 3CS Computers, where computers are just a click away!">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="165.0" layoutY="40.0" styleClass="primaryLabel" text="Please feel free to browse our latest deals, or contact us for further information.">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="115.0" prefWidth="812.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" layoutY="84.0" prefHeight="80.0" prefWidth="751.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox fx:id="homeBtnAccessibility" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="HBox_Home_Button" onMouseClicked="#handleRedirectButtonClick">
+                           <children>
+                              <FontAwesomeIcon fill="#727272" iconName="KEYBOARD_ALT" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIcon>
+                              <Label styleClass="primaryLabel" text="Accessibility" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="homeBtnAccount"  alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="HBox_Home_Button" onMouseClicked="#handleRedirectButtonClick">
+                           <children>
+                              <FontAwesomeIcon fill="#727272" iconName="USER" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIcon>
+                              <Label styleClass="primaryLabel" text="Check Account" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="homeBtnShop" alignment="CENTER_LEFT" layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="HBox_Home_Button" onMouseClicked="#handleRedirectButtonClick" >
+                           <children>
+                              <FontAwesomeIcon fill="#727272" iconName="SHOPPING_CART" size="50" stroke="#0080ff" strokeMiterLimit="5.0" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIcon>
+                              <Label styleClass="primaryLabel" text="Visit Shop" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+
+               </children>
+
+            </AnchorPane>
+            <HBox minHeight="50.0" minWidth="50.0" VBox.vgrow="ALWAYS">
+
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
