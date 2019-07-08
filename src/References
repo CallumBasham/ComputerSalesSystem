@@ -51,6 +51,7 @@
 
 --[[ Useful Links ]]-- >>
     https://stackoverflow.com/questions/7709041/javac-is-not-recognized-as-an-internal-or-external-command-operable-program-or
+    https://stackoverflow.com/questions/53533486/how-to-open-javafx-jar-file-with-jdk-11?rq=1
 
 << --
 
@@ -61,6 +62,10 @@
     Example Below:
     java --module-path "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\Libraries\JavaFX12\lib" --add-modules javafx.controls,javafx.fxml -jar "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\out\artifacts\ComputerSalesSystem_jar\ComputerSalesSystem.jar"
 
+<< --
+
+--[[ how to Compile a Jar artifact for JavaFX12 ]]-- >>
+    Make sure to include a reference to the JavaFX12 bin folder!
 << --
 
 --[[ Backup of Module-Info.java ]]-- >>
