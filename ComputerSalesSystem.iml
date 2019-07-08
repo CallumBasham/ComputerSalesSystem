@@ -8,8 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="SqliteJDBC" level="project" />
-    <orderEntry type="library" exported="" name="FontAwesomeFX" level="project" />
+    <orderEntry type="library" name="JavaFX12" level="project" />
+    <orderEntry type="library" name="SqliteJDBC" level="project" />
+    <orderEntry type="library" name="FontAwesomeFX" level="project" />
     <orderEntry type="library" name="JavaFX12" level="project" />
   </component>
 </module>

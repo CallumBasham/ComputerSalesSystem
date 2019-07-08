@@ -4,7 +4,7 @@ REM This may not work if you are running an old version of Java, modify the Syst
 
 TITLE 3CS Computer Sales System Standalone Launcher
 
-java --module-path "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\Libraries\JavaFX12\lib" --add-modules javafx.controls,javafx.fxml -jar "C:\Users\Callum\Documents\Java Development\IntelliJ\ComputerSalesSystem\out\artifacts\ComputerSalesSystem_jar\ComputerSalesSystem.jar"
+java --module-path "C:\Users\Callum.B\Documents\Java Development\IntelliJ\ComputerSalesSystem\Libraries\JavaFX12\lib" --add-modules javafx.controls,javafx.fxml -jar "C:\Users\Callum.B\Documents\Java Development\IntelliJ\ComputerSalesSystem\out\artifacts\ComputerSalesSystem_jar\ComputerSalesSystem.jar"
 
 ECHO Application has been closed!
 

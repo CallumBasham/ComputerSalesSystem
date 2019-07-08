@@ -87,8 +87,7 @@ public class DatabaseInteraction {
 
             public static void getUserDetails() {
                 try(Statement query = getQuery()) {
-                    ResultSet userAccountandClientResults = query.executeQuery(
-                            "SELECT * " +
+                    ResultSet userAccountandClientResults = query.executeQuery("SELECT * " +
                             "FROM tbAccounts as AC, tbClients as CL, tbCards as CR " +
                             "WHERE AC.UserID = CL.UserID AND AC.UserID = CR.UserID " +
                             "AND AC.Username = '" + Main.localUser.userAccount.getUsername() + "'; "
@@ -113,17 +112,18 @@ public class DatabaseInteraction {
                     Main.localUser.userCards.setExpiryMonth(userAccountandClientResults.getInt("ExpiryMonth"));
 
                     if(userAccountandClientResults.getBytes("Picture") != null){
-                        OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                        OutputStream outputFile = new FileOutputStream(Main.fileLoaderLocation);
                         outputFile.write(userAccountandClientResults.getBytes("Picture"));
                         outputFile.close();
 
-                        File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                        File file = new File(Main.fileLoaderLocation);
                         System.out.println(file.toURI().toString());
                         Image img = new Image(file.toURI().toString());
                         Main.localUser.userAccount.setUserImageFile(file);
                         Main.localUser.userAccount.setUserImage(img);
                     }
 
+                    userAccountandClientResults.close();
 
                     ResultSet userAddressResults = query.executeQuery("SELECT * FROM tbAddress WHERE UserID = " + UserID + ";");
 
@@ -139,6 +139,8 @@ public class DatabaseInteraction {
                         Main.localUser.userAddresses.add(addr);
                     }
 
+                    userAddressResults.close();
+
                     ResultSet userOrdersResults = query.executeQuery("SELECT * FROM tbOrders WHERE UserID = " + UserID + ";");
 
                     while(userAddressResults.next()) {
@@ -153,10 +155,12 @@ public class DatabaseInteraction {
                         Main.localUser.userOrders.add(order);
                     }
 
+                    userOrdersResults.close();
 
                 }catch(Exception ex) {
-                    System.out.println("Exception Reached");
+                    System.out.println("SQL Exception Reached");
                     System.out.println(ex.getMessage());
+                    ex.printStackTrace();
                 }
             }
 
@@ -176,11 +180,11 @@ public class DatabaseInteraction {
 
                         //Write to File
                         if(productResults.getBytes("ProductImage") != null){
-                            OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                            OutputStream outputFile = new FileOutputStream(Main.fileLoaderLocation);
                             outputFile.write(productResults.getBytes("ProductImage"));
                             outputFile.close();
 
-                            File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                            File file = new File(Main.fileLoaderLocation);
                             System.out.println(file.toURI().toString());
                             Image img = new Image(file.toURI().toString());
                             product.setProductImageFile(file);
@@ -228,11 +232,11 @@ public class DatabaseInteraction {
                         );
 
                         if(accountResults.getBytes("Picture") != null){
-                            OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                            OutputStream outputFile = new FileOutputStream(Main.fileLoaderLocation);
                             outputFile.write(accountResults.getBytes("Picture"));
                             outputFile.close();
 
-                            File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                            File file = new File(Main.fileLoaderLocation);
                             System.out.println(file.toURI().toString());
                             Image img = new Image(file.toURI().toString());
                             account.setUserImageFile(file);
@@ -416,9 +420,9 @@ public class DatabaseInteraction {
                                 "'" + _Email + "'," +            //Email
                                 "'" + _PhoneNumber + "'," +         //Phone Number
                                 "'" + _CanContact + "'" +           //Can Contact
-                                ")");
+                                "); ");
 
-                        int userID = query.executeQuery("SELECT UserID FROM tbAccounts WHERE Username = '" + _Username + "'").getInt("UserID");
+                        int userID = query.executeQuery("SELECT UserID FROM tbAccounts WHERE Username = '" + _Username + "'; ").getInt("UserID");
 
                         System.out.println("user Account created and returned the ID: " + userID);
 
@@ -429,19 +433,20 @@ public class DatabaseInteraction {
                                 "'" + _Title + "'," +               //Title
                                 "'" + _Forename + "'," +            //Forename
                                 "'" + _Surname + "'" +         //Surname
-                                ")");
+                                "); ");
 
                         System.out.println("user Card information created using the ID: " + userID);
 
                         //Create foregin key entry in tbCards
                         query.execute("INSERT INTO tbCards (UserID)" +
-                                " " + userID + " " +
-                                ")");
+                                "VALUES( " + userID + " " +
+                                "); ");
 
                         System.out.println("user Card information created using the ID: " + userID);
                     }
                 }catch (SQLException ex) {
                     System.out.println(ex.getMessage());
+                    ex.printStackTrace();
                     return false;
                 }
                 return true;

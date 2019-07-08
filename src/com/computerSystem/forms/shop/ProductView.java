@@ -290,8 +290,14 @@ public class ProductView {
                                 }
                             } else if(subelement instanceof ChoiceBox) {
                                 ChoiceBox subBox = (ChoiceBox)subelement;
-                                if(subBox.getSelectionModel().getSelectedItem().toString().length() > 0) {
-                                    extraData = extraData + subBox.getSelectionModel().getSelectedItem().toString();
+                                int countCheck = 0;
+                                for(var itm:subBox.getItems()){countCheck++;}
+                                if(countCheck>0){
+                                    if(!subBox.getSelectionModel().isEmpty()) {
+                                        if(subBox.getSelectionModel().getSelectedItem().toString().length() > 0) {
+                                            extraData = extraData + subBox.getSelectionModel().getSelectedItem().toString();
+                                        }
+                                    }
                                 }
                             }
                         }

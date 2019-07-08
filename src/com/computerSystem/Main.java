@@ -7,6 +7,7 @@ public class Main {
 
     public static com.computerSystem.models.classLocalUser localUser;
     public static com.computerSystem.models.classLocalShop localShop;
+    public static String fileLoaderLocation = System.getProperty("user.dir") + "\\localFileHost";
 
     public static void main(String[] args) {
 
