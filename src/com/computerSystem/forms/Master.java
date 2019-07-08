@@ -1,6 +1,7 @@
 package com.computerSystem.forms;
 
 import com.computerSystem.Main;
+import com.computerSystem.database.DatabaseSchema;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -9,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -55,6 +58,9 @@ public class Master extends Application {
         loadPage("Home.fxml");
 
         System.out.println("--[[ UI Finished Loading! ]]--");
+
+        /*lert al = new Alert(Alert.AlertType.CONFIRMATION, "Database Located: " + DatabaseSchema.Connection.getDBNConnection(), ButtonType.OK);
+        al.showAndWait();*/
 
         //Gather the data sets from the Database
         Main.localShop.importShopData();
@@ -193,8 +199,8 @@ public class Master extends Application {
                 if(scene.getStylesheets().get(0).contains("StandardStyles.css")) {
                     replaceCurrentStyle("styles/StandardStylesGreen.css");
                 } else if (scene.getStylesheets().get(0).contains("StandardStylesGreen.css")) {
-                    replaceCurrentStyle("styles/StandardStylesLightMode.css");
-                } else if (scene.getStylesheets().get(0).contains("StandardStylesLightMode.css")) {
+                    replaceCurrentStyle("styles/StandardStylesLight.css");
+                } else if (scene.getStylesheets().get(0).contains("StandardStylesLight.css")) {
                     replaceCurrentStyle("styles/StandardStyles.css");
                 }
             } else {

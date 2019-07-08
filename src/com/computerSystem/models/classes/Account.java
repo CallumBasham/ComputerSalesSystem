@@ -1,5 +1,6 @@
 package com.computerSystem.models.classes;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.image.Image;
 
 import java.io.File;

@@ -1,5 +1,6 @@
 package com.computerSystem.database;
 
+import com.computerSystem.Main;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -22,7 +23,7 @@ public class DatabaseSchema {
         private static String getName() { return databaseName; }
 
         //The directory of the database file
-        private static String databasePath = System.getProperty("user.dir") + "\\" + getName();
+        private static String databasePath = Main.databaseLocation + "\\" + getName();
         private static String getPath() { return databasePath; }
 
         private static String databaseConnection = getDriver() + getPath();

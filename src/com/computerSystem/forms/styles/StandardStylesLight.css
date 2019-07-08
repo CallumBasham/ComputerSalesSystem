@@ -1,17 +1,17 @@
 /* Style Color Variables */
 /* This is the only second which requires editing for styles */
 *{
-    -fx-userVar-primary-color: #4b4b4b;
-    -fx-userVar_primary-color2: #575757;
-    -fx-userVar-primary-color-transparent: rgba(50, 50, 200, .1);
-    -fx-userVar-primary-color-transparent-very: rgba(75, 75, 75, .75);
+    -fx-userVar-primary-color: #e3e3e3;
+    -fx-userVar_primary-color2: #cecece;
+    -fx-userVar-primary-color-transparent: rgba(54, 54, 243, 0.1);
+    -fx-userVar-primary-color-transparent-very: rgba(123, 123, 123, 0.75);
 
-    -fx-userVar-primary-text-color: #d1d1d1;
-    -fx-userVar-primary-text-color2: white;
+    -fx-userVar-primary-text-color: #101010;
+    -fx-userVar-primary-text-color2: #000000;
     -fx-userVar-primary-text-family: Impact, Charcoal, sans-serif;
 
-    -fx-userVar-secondary-color: lightblue;
-    -fx-userVar-secondary-color2: rgb(22, 169, 250);
+    -fx-userVar-secondary-color: #18627d;
+    -fx-userVar-secondary-color2: rgb(1, 52, 195);
 }
 
 /* Overriding Default Class/Control Styles */

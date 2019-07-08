@@ -520,6 +520,47 @@ public class DatabaseInteraction {
                 }
                 return true;
             }
+
+            public static boolean updateUserAccountType(Account _Account) {
+                if(_Account.getUserID() != 1) {
+                    try(var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection())) {
+                        System.out.println("Updating account with the AccountID of" + _Account.getUserID());
+
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbAccounts " +
+                                "SET AccountType = " + _Account.getAccountType() + " " +
+                                "WHERE UserID = " + _Account.getUserID() + ";");
+                        prep.executeUpdate();
+                        conn.close();
+                        System.out.println("Account updated!");
+                        return true;
+                    }catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        return false;
+                    }
+                }
+                return false;
+
+            }
+
+            public static boolean updateResetUserAccountPassword(Account _Account) {
+
+                    try(var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection())) {
+                        System.out.println("Updating account with the AccountID of" + _Account.getUserID());
+
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbAccounts " +
+                                "SET Password = '" + "Password" + "' " +
+                                "WHERE UserID = " + _Account.getUserID() + ";");
+                        prep.executeUpdate();
+                        conn.close();
+                        System.out.println("Account updated!");
+                        return true;
+                    }catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        return false;
+                    }
+
+
+            }
         }
     }
 }
