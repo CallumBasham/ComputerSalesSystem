@@ -1,5 +1,8 @@
 package com.computerSystem.models.classes;
 
+import javafx.scene.image.Image;
+
+import java.io.File;
 import java.util.regex.Pattern;
 
 public class Account {
@@ -10,7 +13,20 @@ public class Account {
     private String Email = "";
     private String PhoneNumber = "";
     private boolean CanContact = false;
+    private File UserImageFile;
+    private Image UserImage;
     private Boolean Authenticated = false; //Used as the secure replacement for password
+
+    public Account() {}
+
+    public Account(int _UserID, String _Username, boolean _AccountType, String _Email, String _PhoneNumber, boolean _CanContact) {
+        setUserID(_UserID);
+        setUsername(_Username);
+        setAccountType(_AccountType);
+        setEmail(_Email);
+        setPhone(_PhoneNumber);
+        setCanContact(_CanContact);
+    }
 
     public void signOut() {
         this.UserID = 0;
@@ -18,10 +34,12 @@ public class Account {
         this.AccountType = false;
         this.Email = "";
         this.PhoneNumber = "";
-        String picture = "";
+        this.UserImageFile = null;
+        this.UserImage = null;
         this.CanContact = false;
         this.Authenticated = false;
     }
+
     public void setUserID(int _UserID) {
         this.UserID = _UserID;
     }
@@ -43,6 +61,16 @@ public class Account {
         this.PhoneNumber = _PhoneNumber;
     }
     public String getPhone() {return this.PhoneNumber;}
+
+    public void setUserImageFile(File _ImageFile) {this.UserImageFile = _ImageFile; }
+    public File getUserImageFile() {
+        return this.UserImageFile;
+    }
+
+    public void setUserImage(Image _Image) {this.UserImage = _Image; }
+    public Image getUserImage() {
+        return this.UserImage;
+    }
 
     public void setCanContact(boolean _CanContact) {this.CanContact = _CanContact; }
     public boolean getCanContact() {

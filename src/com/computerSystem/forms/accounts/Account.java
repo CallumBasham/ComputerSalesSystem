@@ -13,12 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
 import java.util.Date;
 
 public class Account {
@@ -173,6 +177,25 @@ public class Account {
                 Main.localUser.userCards.setExpiryMonth(Integer.parseInt(accountTextField_tabAccount_CardMonth.getText()));
                 Main.localUser.updateDatabase_UserCard();
                 break;
+        }
+    }
+
+    @FXML private void handleChangeIconClick(Event ev) {
+        try{
+            JFileChooser jfc = new JFileChooser();
+            jfc.addChoosableFileFilter(new FileNameExtensionFilter("Image Files", "jpg", "png", "tif"));
+            jfc.showDialog(null, "Select Profile Picture");
+            jfc.setVisible(true);
+
+            File file = jfc.getSelectedFile();
+            System.out.println(file.toURI().toString());
+            Image img = new Image(file.toURI().toString());
+
+            accountImageView_tabAccount_userIcon.setImage(img);
+            Main.localUser.userAccount.setUserImage(img);
+            Main.localUser.userAccount.setUserImageFile(file);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -359,6 +382,7 @@ public class Account {
         accountTextField_tabAccount_email.setText(Main.localUser.userAccount.getEmail());
         accountTextField_tabAccount_phoneNumber.setText(Main.localUser.userAccount.getPhone());
         accountCheckBox_tabAccount_canContact.setSelected(Main.localUser.userAccount.getCanContact());
+        accountImageView_tabAccount_userIcon.setImage(Main.localUser.userAccount.getUserImage());
     }
 
     private void populateTab_Client(){

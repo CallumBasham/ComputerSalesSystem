@@ -11,10 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class Master extends Application {
 
@@ -29,6 +32,7 @@ public class Master extends Application {
     @FXML private AnchorPane loaderAnchorPane;
     @FXML private MenuButton userAccountButton;
     @FXML private ImageView accountIcon;
+    @FXML private ImageView imageview_UserIcon;
 
     //Starts the JavaFX Application
     public static void initMaster() { launch(); }
@@ -58,6 +62,7 @@ public class Master extends Application {
 
     //Method - Loads a page into the container
     public Object[] loadPage(String FXMLFile) {
+        Object[] returnObjects;
         AnchorPane pageContainer = (AnchorPane) root.lookup("#loaderAnchorPane");
         pageContainer.getChildren().clear();
         try {
@@ -72,12 +77,13 @@ public class Master extends Application {
             AnchorPane.setLeftAnchor(LoadingPane, 0.0);
             AnchorPane.setRightAnchor(LoadingPane, 0.0);
             pageContainer.getChildren().add((LoadingPane));
-            displayMasterDetails();
-            return new Object[] {LoadingPane, controller};
+            returnObjects = new Object[] {LoadingPane, controller};
         } catch (Exception ex) {
             printFullException(ex);
-            return null;
+            returnObjects = null;
         }
+        displayMasterDetails();
+        return returnObjects;
     }
 
     //Method - Loads an FXML Control and returns to caller for usage
@@ -130,12 +136,16 @@ public class Master extends Application {
                     HBox adminCtrl3 = (HBox) root.lookup("#Sidebar_btnStock"); adminCtrl3.setVisible(false);
                 }
             }
-
+            if(Main.localUser.userAccount.getUserImage() != null) {
+                ImageView userIcn = (ImageView) root.lookup("#imageview_UserIcon");
+                userIcn.setImage(Main.localUser.userAccount.getUserImage());
+            }
         } else {
             userBtn.setText("Login");
             HBox adminCtrl1 = (HBox) root.lookup("#adminTitle"); adminCtrl1.setVisible(false);
             HBox adminCtrl2 = (HBox) root.lookup("#Sidebar_btnAccounts"); adminCtrl2.setVisible(false);
             HBox adminCtrl3 = (HBox) root.lookup("#Sidebar_btnStock"); adminCtrl3.setVisible(false);
+            ImageView userIcn = (ImageView) root.lookup("#imageview_UserIcon"); userIcn.setImage( new Image(getClass().getResourceAsStream("content/Icon_Account.png")));
         }
 
     }
@@ -171,6 +181,12 @@ public class Master extends Application {
                 //Admin Only
                 if(Main.localUser.userAccount.getAuthenticated() && Main.localUser.userAccount.getAccountType()){
                     loadPage("shop/Inventory.fxml");
+                }
+            } else if(box.getId().equals("Sidebar_btnAccounts")) {
+                System.out.println("Admin Accounts Clicked!");
+                //Admin Only
+                if(Main.localUser.userAccount.getAuthenticated() && Main.localUser.userAccount.getAccountType()){
+                    loadPage("accounts/Admin.fxml");
                 }
             } else if(box.getId().equals("Sidebar_btnAccessibility")) {
                 System.out.println("Mode Changed!");

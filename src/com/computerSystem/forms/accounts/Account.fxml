@@ -36,7 +36,7 @@
                                                 <Image url="@../content/Icon_Account.png" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="accountButton_tabAccount_userIcon" mnemonicParsing="false" text="Change Icon" />
+                                          <Button fx:id="accountButton_tabAccount_userIcon" mnemonicParsing="false" text="Change Icon" onMouseClicked="#handleChangeIconClick" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

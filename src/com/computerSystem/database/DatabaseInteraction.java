@@ -112,6 +112,19 @@ public class DatabaseInteraction {
                     Main.localUser.userCards.setExpiryYear(userAccountandClientResults.getInt("ExpiryYear"));
                     Main.localUser.userCards.setExpiryMonth(userAccountandClientResults.getInt("ExpiryMonth"));
 
+                    if(userAccountandClientResults.getBytes("Picture") != null){
+                        OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                        outputFile.write(userAccountandClientResults.getBytes("Picture"));
+                        outputFile.close();
+
+                        File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                        System.out.println(file.toURI().toString());
+                        Image img = new Image(file.toURI().toString());
+                        Main.localUser.userAccount.setUserImageFile(file);
+                        Main.localUser.userAccount.setUserImage(img);
+                    }
+
+
                     ResultSet userAddressResults = query.executeQuery("SELECT * FROM tbAddress WHERE UserID = " + UserID + ";");
 
                     while(userAddressResults.next()) {
@@ -199,6 +212,43 @@ public class DatabaseInteraction {
                 }
                 return returnList;
             }
+
+            public static List<Account> getAllAccounts() {
+                List<Account> returnList = new ArrayList<Account>();
+                try(Statement query = getQuery()) {
+                    ResultSet accountResults = query.executeQuery("SELECT * FROM tbAccounts");
+                    while(accountResults.next()) {
+                        Account account = new Account(
+                                accountResults.getInt("UserID"),
+                                accountResults.getString("Username"),
+                                accountResults.getBoolean("AccountType"),
+                                accountResults.getString("Email"),
+                                accountResults.getString("PhoneNumber"),
+                                accountResults.getBoolean("CanContact")
+                        );
+
+                        if(accountResults.getBytes("Picture") != null){
+                            OutputStream outputFile = new FileOutputStream("C:\\Users\\Callum\\Documents\\file.png");
+                            outputFile.write(accountResults.getBytes("Picture"));
+                            outputFile.close();
+
+                            File file = new File("C:\\Users\\Callum\\Documents\\file.png");
+                            System.out.println(file.toURI().toString());
+                            Image img = new Image(file.toURI().toString());
+                            account.setUserImageFile(file);
+                            account.setUserImage(img);
+                        }
+
+                        returnList.add(account);
+                    }
+                    accountResults.close();
+                }catch(Exception ex) {
+                    System.out.println("Exception Reached");
+                    System.out.println(ex.getMessage());
+                    ex.printStackTrace();
+                }
+                return returnList;
+            }
         }
 
         public static class NonQuery {
@@ -279,9 +329,8 @@ public class DatabaseInteraction {
             }
 
             public static boolean updateProduct(Product _Product) {
-                try(Statement query = getQuery()) {
+                try(var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection())) {
                     System.out.println("Updating product with the ProductID of" + _Product.getProductID());
-                    var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection());
                     if(_Product.getProductImageFile() != null)
                     {
                         FileInputStream fis = new FileInputStream(_Product.getProductImageFile());
@@ -386,7 +435,6 @@ public class DatabaseInteraction {
 
                         //Create foregin key entry in tbCards
                         query.execute("INSERT INTO tbCards (UserID)" +
-                                "VALUES(" +
                                 " " + userID + " " +
                                 ")");
 
@@ -399,19 +447,35 @@ public class DatabaseInteraction {
                 return true;
             }
 
-            @SuppressWarnings("Duplicates")
-            public static boolean updateUserAccount(Account _Account){
-                try(Statement query = getQuery()) {
-                    System.out.println("Updating Account with the UserID of" + _Account.getUserID());
-                    //Create primary key entry in tbAccounts
-                    query.execute("UPDATE tbAccounts " +
-                            "SET Username = '" + _Account.getUsername() + "'," +
-                            "Email = '" + _Account.getEmail() + "'," +
-                            "PhoneNumber = '" + _Account.getPhone() + "'," +
-                            "CanContact = " + _Account.getCanContact() + " " +
-                            "WHERE UserID = " + _Account.getUserID() + ";");
+            public static boolean updateUserAccount(Account _Account) {
+                try(var conn = DriverManager.getConnection(DatabaseSchema.Connection.getDBNConnection())) {
+                    System.out.println("Updating account with the AccountID of" + _Account.getUserID());
+                    if(_Account.getUserImageFile() != null)
+                    {
+                        FileInputStream fis = new FileInputStream(_Account.getUserImageFile());
+                        int fileLength = (int)_Account.getUserImageFile().length();
+
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbAccounts " +
+                                "SET Username = '" + _Account.getUsername() + "'," +
+                                "Email = '" + _Account.getEmail() + "'," +
+                                "PhoneNumber = '" + _Account.getPhone() + "'," +
+                                "CanContact = " + _Account.getCanContact() + ", " +
+                                "Picture = ? " +
+                                "WHERE UserID = " + _Account.getUserID() + ";");
+                        prep.setBinaryStream(1, fis, fileLength);
+                        prep.executeUpdate();
+                    } else {
+                        PreparedStatement prep = conn.prepareStatement("UPDATE tbAccounts " +
+                                "SET Username = '" + _Account.getUsername() + "'," +
+                                        "Email = '" + _Account.getEmail() + "'," +
+                                        "PhoneNumber = '" + _Account.getPhone() + "'," +
+                                        "CanContact = " + _Account.getCanContact() + " " +
+                                        "WHERE UserID = " + _Account.getUserID() + ";");
+                        prep.executeUpdate();
+                    }
+                    conn.close();
                     System.out.println("Account updated!");
-                }catch (SQLException ex) {
+                }catch (Exception ex) {
                     System.out.println(ex.getMessage());
                     return false;
                 }

@@ -25,7 +25,7 @@
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="590.0" prefWidth="140.0" spacing="10.0" styleClass="Multi_Master_BackgroundGrid" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                  <ImageView fx:id="imageview_UserIcon" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
                         <Image url="@content/Icon_Account.png" />
                      </image>
